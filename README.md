@@ -98,3 +98,25 @@ Questo approccio si presta molto bene ad un'implementazione ricorsiva. Se nella 
 Come già accennato, se vogliamo estendere il problema da 8 a 12, 16 o addirittura 24 regine, rispettivamente su scacchiere 12x12, 16x16 o 24x24, le prime soluzioni proposte sopra si scontrano contro la complessità esponenziale e fattoriale del problema. E diventano quindi inapplicabili. Il metodo ricorsivo rimane invece ancora applicabile, anche per dimensioni del problema più grandi di 8. Ora ci serve un metodo veloce per capire se la casella analizzata è minacciata dalle regine già disposte sopra. Accoppiato con un metodo efficiente per rappresentare questi dati in memoria, in modo da poter fare sia le disposizioni delle regine che le verifiche sulle minacce molto velocemente. Intuitivamente si potrebbe usare una matrice 8x8 per rappresentare la scacchiera. Come vedremo in seguito, esistono strutture più compatte ed efficienti, data la natura dei dati e dei calcoli da fare. Per ora usiamo una matrice per rappresentare graficamente quello che vogliamo fare. Usiamo un simbolo 'R' per piazzare una regina in una riga della matrice, e un simbolo 'M' per dire che una casella è minacciata.
 
 Numeriamo righe e colonne a partire dall'angolo in alto a sinistra, con i numeri di riga e colonna che vanno da 0 a 7. All’inizio, piazziamo la prima regina in (0,0) (riga,colonna) e segnamo le caselle minacciate. 
+
+Per piazzare la seconda regina nella seconda riga usiamo la casella nella terza colonna, in (1,2). Perchè (1,1) è minacciata in diagonale. E anche qui marchiamo le caselle minacciate. 
+
+Per piazzare la terza regina nella terza riga (riga 2), possiamo piazzarla solo a partire dalla quinta colonna (2,4), in quanto le precedenti da (2,0) a (2,3) sono tutte minacciate. 
+
+E così via. Come si vede, ogni volta che piazziamo una regina si evitano diverse combinazioni da esplorare in seguito, per via delle caselle minacciate. Nella riga 3 per esempio cominciamo ad esplorare l'albero con la regina in (3,1) per vedere se contiene soluzioni. Finito di esplorare questo, proveremo con la regina in (3,6), scartando le precedenti da (3,2) a (3,5), in quanto minacciate. Nella riga 5 abbiamo solo la possibilità di piazzare la nostra regina in (5,3).
+
+<h2>E se la minaccia arriva in diagonale?</h2>
+
+Se come accennato sopra, per costruzione piazziamo una regina per riga, in una posizione diversa dalle regine delle righe precedenti, escludiamo subito le minacce in orizzontale e in verticale. Dobbiamo "solo" verificare se la posizione “candidata” è minacciata in diagonale dalle regine piazzate in precedenza. Per esempio, possiamo dire che una regina in posizione (4,5), è minacciata dalla regina nella riga precedente (riga 3) solo se questa regina si trova in posizione (3,4) o in posizione (3,6). Le caselle in diagonale in alto a destra e a sinistra di (4,5).
+
+Se lo è, ci fermiamo e troviamo la prossima casella candidata. Se non lo è, andiamo e controlliamo se è minacciata dalla regina in riga 2. La casella (4,5) è minacciata dalla regina in riga 2 se questa si trova in posizione (2,3) o in posizione (2,7). 
+
+E così via, fino a controllare se la nostra casella candidata (4,5) è minacciata dalla regina nella  prima riga (riga 0). Dobbiamo quindi generare le coordinate delle caselle nelle due direzioni diagonali in alto a destra e in alto a sinistra della posizione che stiamo controllando, e verificare se a queste coordinate è presente una regina. 
+
+Per (4,5), che è la nostra casella candidata, queste caselle “minaccianti” sono: 
+
+(3,4), (2,3), (1,2), (0,1) per la diagonale a sinistra 
+
+(3,6), (2,7) per la diagonale destra 
+
+Generalizzando, per verificare se la casella (j,k) è minacciata in diagonale dalle regine disposte sopra, dobbiamo verificare, riga per riga a ritroso partendo dalla riga j, la presenza di una regina nelle caselle che hanno colonna k-1 o k+1 nella riga j-1, k-2 o k+2 nella riga j-2, k-3 o k+3 nella riga j-3 eccetera, indietro fino alla riga 0. Se otteniamo una colonna negativa (minore di zero) o maggiore di 7, ovviamente possiamo ignorare il check. 
