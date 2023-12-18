@@ -13,19 +13,19 @@
 <!-- Badges -->
 <p>
   <a href="https://github.com/EmmanuelloDaniele/3D-Porfolio/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/EmmanuelloDaniele/3D-Porfolio" alt="contributors" />
+    <img src="https://img.shields.io/github/contributors/EmmanuelloDaniele/Artificial-Intelligence" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/EmmanuelloDaniele/3D-Porfolio" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/EmmanuelloDaniele/Artificial-Intelligence" alt="last update" />
   </a>
   <a href="https://github.com/EmmanuelloDaniele/3D-Porfolio/network/members">
-    <img src="https://img.shields.io/github/forks/EmmanuelloDaniele/3D-Porfolio" alt="forks" />
+    <img src="https://img.shields.io/github/forks/EmmanuelloDaniele/3Artificial-Intelligence" alt="forks" />
   </a>
   <a href="https://github.com/EmmanuelloDaniele/3D-Porfolio/stargazers">
-    <img src="https://img.shields.io/github/stars/EmmanuelloDaniele/3D-Porfolio" alt="stars" />
+    <img src="https://img.shields.io/github/stars/EmmanuelloDaniele/Artificial-Intelligence" alt="stars" />
   </a>
   <a href="https://github.com/EmmanuelloDaniele/3D-Porfolio/issues/">
-    <img src="https://img.shields.io/github/issues/EmmanuelloDaniele/3D-Porfolio" alt="open issues" />
+    <img src="https://img.shields.io/github/issues/EmmanuelloDaniele/Artificial-Intelligence" alt="open issues" />
   </a>
   <a href="https://github.com/EmmanuelloDaniele/3D-Porfolio/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/EmmanuelloDaniele/Threejs_3D_Portfolio.svg" alt="license" />
@@ -34,9 +34,9 @@
    
  <h4>
   <span> · </span>
-    <a href="https://github.com/EmmanuelloDaniele/3D-Porfolio/issues/">Report Bug</a>
+    <a href="https://github.com/EmmanuelloDaniele/Artificial-Intelligence/issues/">Report Bug</a>
   <span> · </span>
-    <a href="https://github.com/EmmanuelloDaniele/3D-Porfolio/issues/">Request Feature</a>
+    <a href="https://github.com/EmmanuelloDaniele/Artificial-Intelligence/issues/">Request Feature</a>
   </h4>
 </div>
 
