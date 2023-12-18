@@ -65,3 +65,36 @@ Suggerimento: Si definisca una funzione is_valid(state) che, dato uno stato, res
 stato è valido, False se contiene due regine sulla stessa colonna o sulla stessa diagonale (la codifica dello
 stato impedisce che due regine siano sulla stessa riga).
 </details>
+
+
+<h2>Approccio intuitivo iniziale</h2>
+
+Partiamo dalla soluzione "banale". 
+
+La soluzione consiste nel generare tutte le disposizioni possibili di 8 regine su una scacchiera di  8x8 == 64 caselle. Dal Coefficiente binomiale, calcoliamo che queste disposizioni ammontano a 4.426.165.368. Scriviamo un programma che genera tutte le disposizioni, e scartiamo tutte quelle dove c'è almeno una regina che ne minaccia un'altra. Le disposizioni da analizzare sono un numero decisamente elevato. Per velocizzare la soluzione, abbiamo bisogno di semplificare il problema, per esempio riducendo il numero di disposizioni da analizzare. 
+
+<h2>Semplifica.</h2>
+
+Una prima semplificazione potrebbe essere, per esempio, imporre una sola regina per ogni riga. Due regine nella stessa riga si minacciano in orizzontale. 
+
+E nelle otto righe, tutte le regine stanno sicuramente disposte in posizioni (colonne) diverse. Per non minacciarsi in verticale. 
+
+Quindi in tutta la scacchiera, nella nostra soluzione avremo sicuramente una riga con una regina nella prima posizione a sinistra, una riga con la regina in seconda posizione eccetera. 
+
+Questo algoritmo semplificato, invece di generare tutte le disposizioni descritte sopra, prevede di generare solo le combinazioni possibili di 8 righe, ognuna con una regina in posizione diversa. Nella prima riga ho 8 posizioni possibili. Nella seconda ne ho sette (in realtà ne ho 5 oppure sei, considerando le caselle minacciate in diagonale). Nella terza ne ho sei, eccetera. Queste combinazioni sono 8 fattoriale (8! == 40320), un numero di 5 ordini di grandezza inferiore alle disposizioni calcolate sopra. Anche qui dobbiamo generare le combinazioni e scartare tutte quelle dove è presente almeno una regina che ne minaccia un'altra. 
+
+La minaccia potrà arrivare solo in diagonale, in quanto le minacce in orizzontale e in verticale le abbiamo già eliminate “per costruzione”.
+Possiamo ottimizzare ancora?
+
+Per un problema di ordine 8, circa quarantamila combinazioni da analizzare sono relativamente poche. Ma cosa succede se vogliamo risolvere il problema con 16 regine su una scacchiera 16x16? Oppure se volessimo risolvere il problema con 24? 24 Fattoriale (24!) è un numero dell’ordine di 10^23. Se avessimo un miliardo di calcolatori, ognuno in grado di esaminare un miliardo di combinazioni al secondo, potremmo calcolare tutte le soluzioni in circa una settimana di calcolo.  Decisamente troppe combinazioni da generare e da esaminare in tempi “umani” con risorse limitate. Abbiamo bisogno di semplificare ancora il problema, perchè questo sia affrontabile. 
+
+<h2>Ma torniamo al problema di ordine 8. </h2>
+
+Per esempio, possiamo pensare di cominciare a controllare le minacce in diagonale anche con le combinazioni incomplete, mentre le costruiamo, senza aspettare di aver piazzato tutte le regine per farlo. Per ogni riga, quindi, prima di piazzare una regina nella casella candidata, controllo le minacce in diagonale su questa casella. Se la casella è minacciata, esamino la successiva nella riga. Dispongo la regina nella posizione non minacciata e non ancora provata in precedenza. Se arrivo alla fine della riga senza altre posizioni disponibili, torno alla riga precedente, dove applico la stessa logica, cercando una nuova disposizione per quella regina. Quando arrivo a disporre tutte le 8 regine sulle 8 righe, la soluzione è valida, la conteggio e la stampo o la memorizzo. E continuo la ricerca. Quando ho generato tutte le disposizioni possibili, mi fermo. 
+
+Questo approccio si presta molto bene ad un'implementazione ricorsiva. Se nella riga attuale non sono rimaste altre posizioni utilizzabili, perchè tutte già provate o minacciate dalle regine disposte nelle righe precedenti, interrompo la ricerca sulla riga attuale e innesco il backtracking tornando alla riga precedente. Non provando (e quindi non verificando) tutte le combinazioni complete possibili, è chiaramente molto più efficiente dei precedenti. Perchè quando innesco il backtracking per mancanza di posizioni sulla riga attuale, sto in realtà scartando una grossa porzione di combinazioni da analizzare. Sto scartando in un colpo solo tutto il sottoalbero di combinazioni possibili, ma sicuramente non valide. Albero che può essere decisamente grande. 
+<h2>Come capiamo se una casella è minacciata?</h2>
+
+Come già accennato, se vogliamo estendere il problema da 8 a 12, 16 o addirittura 24 regine, rispettivamente su scacchiere 12x12, 16x16 o 24x24, le prime soluzioni proposte sopra si scontrano contro la complessità esponenziale e fattoriale del problema. E diventano quindi inapplicabili. Il metodo ricorsivo rimane invece ancora applicabile, anche per dimensioni del problema più grandi di 8. Ora ci serve un metodo veloce per capire se la casella analizzata è minacciata dalle regine già disposte sopra. Accoppiato con un metodo efficiente per rappresentare questi dati in memoria, in modo da poter fare sia le disposizioni delle regine che le verifiche sulle minacce molto velocemente. Intuitivamente si potrebbe usare una matrice 8x8 per rappresentare la scacchiera. Come vedremo in seguito, esistono strutture più compatte ed efficienti, data la natura dei dati e dei calcoli da fare. Per ora usiamo una matrice per rappresentare graficamente quello che vogliamo fare. Usiamo un simbolo 'R' per piazzare una regina in una riga della matrice, e un simbolo 'M' per dire che una casella è minacciata.
+
+Numeriamo righe e colonne a partire dall'angolo in alto a sinistra, con i numeri di riga e colonna che vanno da 0 a 7. All’inizio, piazziamo la prima regina in (0,0) (riga,colonna) e segnamo le caselle minacciate. 
