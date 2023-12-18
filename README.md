@@ -4,7 +4,7 @@
 
   
 
-  <h1>Artificial-Intelligence problema 8 regine/h1>
+  <h1>Artificial-Intelligence problema 8 regine</h1>
   
   <p>
   Il problema consiste nel disporre 8 regine all'interno di una scacchiera regolamentare 8x8, in modo che nessuna possa minacciarne o sia minacciata da un'altra. Ricordiamo che una regina può muoversi di quante caselle vuole, in orizzontale, in verticale e in diagonale. Il problema è affrontabile e risolvibile seguendo percorsi differenti. Ognuno con efficienza e prestazioni molto diverse tra loro. 
@@ -42,24 +42,26 @@
 
 <br />
 
-<!-- Table of Contents -->
+<!-- Consegna -->
 <details>
 
 <summary>
 
-# :notebook_with_decorative_cover: Table of Contents
+# :notebook_with_decorative_cover: Testo Esercizio
 
 </summary>
 
-- [About the Project](#star2-about-the-project)
-  * [Folder Structure](#bangbang-folder-structure)
-  * [Tech Stack](#space_invader-tech-stack)
-- [Getting Started](#toolbox-getting-started)
-  * [Installation](#gear-installation)
-  * [Run Locally](#running-run-locally)
-- [Contributing](#wave-contributing)
-- [License](#warning-license)
-- [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
 
+Si scriva un programma Python per determinare le soluzioni del rompicapo delle otto regine. Il rompicapo
+delle otto regine è un problema che consiste nel trovare il modo di posizionare otto regine (pezzo degli
+scacchi) su una scacchiera 8 × 8 con una disposizione tale che nessuna di esse possa catturarne un’altra,
+usando i movimenti standard della regina. Perciò, una soluzione dovrà prevedere che nessuna regina
+abbia una colonna, riga o diagonale in comune con un’altra regina.
+Si codifichi lo lo stato del problema come una lista, dove ogni elemento della lista rappresenta la colonna in
+cui è posizionata la regina della riga corrispondente. La scacchiera in figura sarebbe quindi codificata come
+[6, 2, 7, 1, 4, 0, 5, 3]. Lo stato iniziale sarà una lista vuota, e ogni azione consiste nell’aggiungere
+una regina nella riga successiva.
+Suggerimento: Si definisca una funzione is_valid(state) che, dato uno stato, restituisce True se lo
+stato è valido, False se contiene due regine sulla stessa colonna o sulla stessa diagonale (la codifica dello
+stato impedisce che due regine siano sulla stessa riga).
 </details>
