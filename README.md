@@ -120,3 +120,14 @@ Per (4,5), che è la nostra casella candidata, queste caselle “minaccianti” 
 (3,6), (2,7) per la diagonale destra 
 
 Generalizzando, per verificare se la casella (j,k) è minacciata in diagonale dalle regine disposte sopra, dobbiamo verificare, riga per riga a ritroso partendo dalla riga j, la presenza di una regina nelle caselle che hanno colonna k-1 o k+1 nella riga j-1, k-2 o k+2 nella riga j-2, k-3 o k+3 nella riga j-3 eccetera, indietro fino alla riga 0. Se otteniamo una colonna negativa (minore di zero) o maggiore di 7, ovviamente possiamo ignorare il check. 
+
+
+<!-- Contact -->
+
+
+##  More info  :handshake: Contact
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/emmanuello) 
+<p dir="auto">Daniele Emmanuello - <a href="https://www.linkedin.com/in/emmanuellodaniele/" rel="nofollow">@Linkedin</a> -<a href="https://t.me/emmanuellodaniele"rel="nofollow">@Telegram</a></p> 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
