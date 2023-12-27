@@ -55,16 +55,16 @@ It is an optimization algorithm used to train neural networks and minimize the c
 ▶ The simplest optimization algorithm is gradient descent.</br>
 ▶ Gradient descent is an iterative algorithm that can be applied to any differentiable function.</br>
 <p>
-x1\</br>
-   \</br>
-    w3</br>
-     \      W^t x</br>
-x2--w2->P------------->g(·)------------></br>
-     /                        y</br>
-    w1</br>
-   /</br>
-  /</br>
-1/</br>
+x1\
+   \
+    w3
+     \      W^t x
+x2--w2->P------------->g(·)------------>
+     /                        y
+    w1
+   /
+  /
+1/
 </p>
 ▶ Il neurone riceve un insieme di input x = (x1, x2, . . . , xn, 1).</br>
 ▶ Ogni input xi è moltiplicato per un peso Wi.</br>
