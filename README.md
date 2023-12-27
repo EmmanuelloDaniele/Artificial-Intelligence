@@ -45,7 +45,7 @@
 
 <summary>
 
-# :notebook_with_decorative_cover: Testo Esercizio
+# :notebook_with_decorative_cover: 8 Queens Problem
 
 </summary>
 
