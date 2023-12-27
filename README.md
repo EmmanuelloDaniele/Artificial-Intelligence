@@ -39,7 +39,22 @@
 </div>
 
 <br />
+<details>
 
+<summary>
+
+# :notebook_with_decorative_cover: Train a Neural Network(SGD)
+
+
+</summary>
+# SGD: Stochastic Gradient Descent
+It is an optimization algorithm used to train neural networks and minimize the cost function, aiming to find the global minimum. The stochastic approach stems from the fact that the gradient is calculated on random subsets of the training data rather than the entire dataset.
+
+<h2>To train a neural network means finding the weight values that minimize an error function on the training set.</h2>
+▶ To find the optimal weights, it is necessary to use an optimization algorithm.
+▶ The simplest optimization algorithm is gradient descent.
+▶ Gradient descent is an iterative algorithm that can be applied to any differentiable function.
+</details>
 <!-- Consegna -->
 <details>
 
