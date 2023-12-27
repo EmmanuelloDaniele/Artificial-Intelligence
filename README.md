@@ -55,37 +55,37 @@ It is an optimization algorithm used to train neural networks and minimize the c
 ▶ The simplest optimization algorithm is gradient descent.</br>
 ▶ Gradient descent is an iterative algorithm that can be applied to any differentiable function.</br>
 
-x1\
-   \
-    w3
-     \      W^t x
-x2--w2->P------------->g(·)------------>
-     /                        y
-    w1
-   /
-  /
-1/
+x1\</br>
+   \</br>
+    w3</br>
+     \      W^t x</br>
+x2--w2->P------------->g(·)------------></br>
+     /                        y</br>
+    w1</br>
+   /</br>
+  /</br>
+1/</br>
 ▶ Il neurone riceve un insieme di input x = (x1, x2, . . . , xn, 1).</br>
 ▶ Ogni input xi è moltiplicato per un peso Wi.</br>
 ▶ I pesi W sono i parametri della rete neurale.</br>
 ▶ I pesi W sono inizializzati casualmente.</br>
 ▶ I pesi W sono aggiornati durante l’addestramento</br>
-▶ Consideriamo una rete neurale con un solo neurone.
-▶ La rete deve imparare a separare due classi linearmente separabili sul piano.
-▶ La rete ha come funzione di attivazione la funzione identità.
-g(x) = x
-g′(x) = 1
-Dataset:
- x1 |  x2  | y
-    |      |
-2.0 |  1.0 | 1
-6.0 |  0.5 |-1
-2.5 | -1.0 | 1
-5.0 |  0.0 |-1
-0.0 |  0.0 | 1
-4.0 | -1.0 |-1
-1.0 |  0.5 | 1
-3.0 |  1.5 |-1
+▶ Consideriamo una rete neurale con un solo neurone.</br>
+▶ La rete deve imparare a separare due classi linearmente separabili sul piano.</br>
+▶ La rete ha come funzione di attivazione la funzione identità.</br>
+g(x) = x</br>
+g′(x) = 1</br>
+Dataset:</br>
+ x1 |  x2  | y</br>
+    |      |</br>
+2.0 |  1.0 | 1</br>
+6.0 |  0.5 |-1</br>
+2.5 | -1.0 | 1</br>
+5.0 |  0.0 |-1</br>
+0.0 |  0.0 | 1</br>
+4.0 | -1.0 |-1</br>
+1.0 |  0.5 | 1</br>
+3.0 |  1.5 |-1</br>
 </details>
 <!-- Consegna -->
 <details>
