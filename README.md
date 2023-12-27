@@ -54,7 +54,7 @@ It is an optimization algorithm used to train neural networks and minimize the c
 ▶ To find the optimal weights, it is necessary to use an optimization algorithm.</br>
 ▶ The simplest optimization algorithm is gradient descent.</br>
 ▶ Gradient descent is an iterative algorithm that can be applied to any differentiable function.</br>
-
+<p>
 x1\</br>
    \</br>
     w3</br>
@@ -65,6 +65,7 @@ x2--w2->P------------->g(·)------------></br>
    /</br>
   /</br>
 1/</br>
+</p>
 ▶ Il neurone riceve un insieme di input x = (x1, x2, . . . , xn, 1).</br>
 ▶ Ogni input xi è moltiplicato per un peso Wi.</br>
 ▶ I pesi W sono i parametri della rete neurale.</br>
