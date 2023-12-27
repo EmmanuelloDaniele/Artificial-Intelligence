@@ -4,11 +4,9 @@
 
   
 
-  <h1>Artificial-Intelligence problema 8 regine</h1>
+  <h1>Artificial-Intelligence </h1>
   
-  <p>
-  Il problema consiste nel disporre 8 regine all'interno di una scacchiera regolamentare 8x8, in modo che nessuna possa minacciarne o sia minacciata da un'altra. Ricordiamo che una regina può muoversi di quante caselle vuole, in orizzontale, in verticale e in diagonale. Il problema è affrontabile e risolvibile seguendo percorsi differenti. Ognuno con efficienza e prestazioni molto diverse tra loro. 
-  </p>
+ 
 
 <!-- Badges -->
 <p>
@@ -51,7 +49,10 @@
 
 </summary>
 
-
+ <p>
+  Il problema consiste nel disporre 8 regine all'interno di una scacchiera regolamentare 8x8, in modo che nessuna possa minacciarne o sia minacciata da un'altra. Ricordiamo che una regina può muoversi di quante caselle vuole, in orizzontale, in verticale e in diagonale. Il problema è affrontabile e risolvibile seguendo percorsi differenti. Ognuno con efficienza e prestazioni molto diverse tra loro. 
+  </p>
+<h1>Testo esercizio</h1>
 Si scriva un programma Python per determinare le soluzioni del rompicapo delle otto regine. Il rompicapo
 delle otto regine è un problema che consiste nel trovare il modo di posizionare otto regine (pezzo degli
 scacchi) su una scacchiera 8 × 8 con una disposizione tale che nessuna di esse possa catturarne un’altra,
@@ -64,8 +65,6 @@ una regina nella riga successiva.
 Suggerimento: Si definisca una funzione is_valid(state) che, dato uno stato, restituisce True se lo
 stato è valido, False se contiene due regine sulla stessa colonna o sulla stessa diagonale (la codifica dello
 stato impedisce che due regine siano sulla stessa riga).
-</details>
-
 
 <h2>Approccio intuitivo iniziale</h2>
 
@@ -120,6 +119,11 @@ Per (4,5), che è la nostra casella candidata, queste caselle “minaccianti” 
 (3,6), (2,7) per la diagonale destra 
 
 Generalizzando, per verificare se la casella (j,k) è minacciata in diagonale dalle regine disposte sopra, dobbiamo verificare, riga per riga a ritroso partendo dalla riga j, la presenza di una regina nelle caselle che hanno colonna k-1 o k+1 nella riga j-1, k-2 o k+2 nella riga j-2, k-3 o k+3 nella riga j-3 eccetera, indietro fino alla riga 0. Se otteniamo una colonna negativa (minore di zero) o maggiore di 7, ovviamente possiamo ignorare il check. 
+
+</details>
+
+
+
 
 
 <!-- Contact -->
