@@ -57,10 +57,10 @@ In [ ]: <code>!pip list</code></br>
 In [1]: <code>import tensorflow as tf</code></br>
 In [1]: <code>import os</code></br>
 In [2]: <code># Avoid OOM errors by setting GPU Memory Consumption Growth
-gpus = tf.config.experimental.list_physical_devices('GPU')
-for gpu in gpus:
-    tf.config.experimental.set_memory_growth(gpu, True)</code></br>
-In [3]: <code>tf.config.list_physical_devices('GPU')</code>
+In [2]: gpus = tf.config.experimental.list_physical_devices('GPU')
+In [2]: for gpu in gpus:
+In [2]: tf.config.experimental.set_memory_growth(gpu, True)</code></br>
+In [3]: <code>tf.config.list_physical_devices('GPU')</code></br>
 
 Out [3]: <code>[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')] </code>
 
