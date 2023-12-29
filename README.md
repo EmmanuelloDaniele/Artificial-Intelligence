@@ -91,7 +91,7 @@ In [8]: <code>import numpy as np
 from matplotlib import pyplot as plt</code></br>
 In [9]: <code>data = tf.keras.utils.image_dataset_from_directory('data')
 </code></br>
-Out [9]: Found 305 files belonging to 2 classes.
+Out [9]: Found 305 files belonging to 2 classes.</br>
 In [10]: <code>data_iterator = data.as_numpy_iterator()
 </code></br>
 In [11]: <code>batch = data_iterator.next()</code></br>
@@ -100,7 +100,167 @@ In [12]: <code>for image_class in os.listdir(data_dir):
 for idx, img in enumerate(batch[0][:4]):
     ax[idx].imshow(img.astype(int))
     ax[idx].title.set_text(batch[1][idx])</code></br>
-<p>
+
+<h2>4. Scale Data</h2>
+In [13]: <code>data = data.map(lambda x,y: (x/255, y))</code></br>
+In [ ]: <code>data.as_numpy_iterator().next()</code></br>
+
+
+<h2>5. Split Data</h2>
+In [15]: <code>train_size = int(len(data)*.7)
+val_size = int(len(data)*.2)
+test_size = int(len(data)*.1)</code></br>
+In [16]: <code>train_size</code></br>
+Out [16]: 7</br>
+In [17]: <code>train = data.take(train_size)
+val = data.skip(train_size).take(val_size)
+test = data.skip(train_size+val_size).take(test_size)
+</code></br>
+
+<h2>6. Build Deep Learning Model
+</h2>
+In [18]: <code>train</code></br>
+Out [18]: <code><TakeDataset element_spec=(TensorSpec(shape=(None, 256, 256, 3), dtype=tf.float32, name=None), TensorSpec(shape=(None,), dtype=tf.int32, name=None))>
+</code></br>
+In [19]: <code>from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout</code></br>
+In [20]: <code>model = Sequential()
+</code></br>
+In [21]: model.add(Conv2D(16, (3,3), 1, activation='relu', input_shape=(256,256,3)))
+model.add(MaxPooling2D())
+model.add(Conv2D(32, (3,3), 1, activation='relu'))
+model.add(MaxPooling2D())
+model.add(Conv2D(16, (3,3), 1, activation='relu'))
+model.add(MaxPooling2D())
+model.add(Flatten())
+model.add(Dense(256, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))</br>
+</code></br>
+In [22]: <code>model.compile('adam', loss=tf.losses.BinaryCrossentropy(), metrics=['accuracy'])
+</code></br>
+In [23]: <code>model.summary()
+</code></br>
+Out [23]: <code>Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 254, 254, 16)      448       
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 127, 127, 16)     0         
+ )                                                               
+                                                                 
+ conv2d_1 (Conv2D)           (None, 125, 125, 32)      4640      
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 62, 62, 32)       0         
+ 2D)                                                             
+                                                                 
+ conv2d_2 (Conv2D)           (None, 60, 60, 16)        4624      
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 30, 30, 16)       0         
+ 2D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 14400)             0         
+                                                                 
+ dense (Dense)               (None, 256)               3686656   
+                                                                 
+ dense_1 (Dense)             (None, 1)                 257       
+                                                                 
+=================================================================
+Total params: 3,696,625
+Trainable params: 3,696,625
+Non-trainable params: 0
+_________________________________________________________________
+</code></br>
+
+In [22]: <code>
+</code></br>
+
+<h2>7. Train
+</h2>
+In [24]: <code>logdir='logs'
+
+</code></br>
+In [25]: <code>tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
+
+</code></br>
+In []: <code>hist = model.fit(train, epochs=20, validation_data=val, callbacks=[tensorboard_callback])
+
+</code></br>
+
+<h2>8. Plot Performance Loss, Accuracy
+</h2>
+In [27]: <code>fig = plt.figure()
+plt.plot(hist.history['loss'], color='teal', label='loss')
+plt.plot(hist.history['val_loss'], color='orange', label='val_loss')
+fig.suptitle('Loss', fontsize=20)
+plt.legend(loc="upper left")
+plt.show()
+</code></br>
+In [28]: <code>fig = plt.figure()
+plt.plot(hist.history['accuracy'], color='teal', label='accuracy')
+plt.plot(hist.history['val_accuracy'], color='orange', label='val_accuracy')
+fig.suptitle('Accuracy', fontsize=20)
+plt.legend(loc="upper left")
+plt.show()</code></br>
+
+<h2>9. Evaluate
+</h2>
+In [29]: <code>from tensorflow.keras.metrics import Precision, Recall, BinaryAccuracy
+</code></br>
+In [30]: <code>pre = Precision()
+re = Recall()
+acc = BinaryAccuracy()
+</code></br>
+In [31]: <code> for batch in test.as_numpy_iterator(): 
+    X, y = batch
+    yhat = model.predict(X)
+    pre.update_state(y, yhat)
+    re.update_state(y, yhat)
+    acc.update_state(y, yhat)
+    </code></br>
+In [32]: <code>print(pre.result(), re.result(), acc.result())
+</code></br>
+Out [ ]: tf.Tensor(1.0, shape=(), dtype=float32) tf.Tensor(1.0, shape=(), dtype=float32) tf.Tensor(1.0, shape=(), dtype=float32)</br>
+
+<h2>10. Test
+</h2>
+In [33]: <code>import cv2
+</code></br>
+In [39]: <code>img = cv2.imread('154006829.jpg')
+plt.imshow(img)
+plt.show()
+</code></br>
+In [40]: <code> resize = tf.image.resize(img, (256,256))
+plt.imshow(resize.numpy().astype(int))
+plt.show()
+    </code></br>
+In [41]: <code>yhat = model.predict(np.expand_dims(resize/255, 0))
+
+</code></br>
+In [42]: <code>yhat</code></br>
+Out [42]: array([[0.01972741]], dtype=float32)</br>
+In [42]: <code>if yhat > 0.5: 
+    print(f'Predicted class is Sad')
+else:
+    print(f'Predicted class is Happy')</code></br>
+  Predicted class is Happy</br>
+
+<h2>11. Save the Model
+
+</h2>
+In [44]: <code>from tensorflow.keras.models import load_model
+
+</code></br>
+In [45]: <code>model.save(os.path.join('models','imageclassifier.h5'))
+
+</code></br>
+In [46]: <code>new_model = load_model('imageclassifier.h5')
+</code></br>
+In [47]: <code>new_model.predict(np.expand_dims(resize/255, 0))
+</code></br>
+Out [47]: array([[0.01972741]], dtype=float32)</br>
+
+  Predicted class is Happy</br>
 
 </details>
 
