@@ -118,6 +118,30 @@
 
 </details>
 
+<!-- Research -->
+<details>
+
+<summary>
+
+# :notebook_with_decorative_cover: Research-1
+
+
+</summary>
+<p>Utilizzo grafo non orientato rappresentato come un dizionario di liste di adiacenza. Ogni nodo del grafo è una chiave del dizionario, e i suoi vicini sono elencati nelle liste associate.
+
+ definita una classe Agent con un costruttore __init__. Questa classe rappresenta un agente che eseguirà la ricerca in ampiezza (BFS) nel grafo. 
+ Gli viene passato il grafo, il nodo di partenza (start), e il nodo obiettivo (goal). self.frontier è una lista di percorsi, inizializzata con il percorso iniziale contenente solo il nodo di partenza.
+ Il metodo next_states restituisce i vicini dell'ultimo nodo nel percorso attuale.
+is_goal verifica se lo stato corrente è l'obiettivo.
+bfs è un generatore che esegue la ricerca in ampiezza.
+Estrae il primo percorso dalla frontiera.
+Se è l'obiettivo, lo restituisce.
+Altrimenti, genera nuovi percorsi aggiungendo i vicini dello stato finale del percorso corrente alla frontiera.
+Ricorsivamente continua la ricerca.
+Il blocco finale crea un'istanza dell'agente, imposta una lunghezza minima iniziale a infinito, e successivamente itera attraverso i percorsi restituiti dalla BFS. Stampa ogni percorso e aggiorna la lunghezza minima quando trova un percorso più breve.
+</p>
+</details>
+
 <!-- Deep Learning Image Classifier -->
 <details>
 
