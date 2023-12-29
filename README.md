@@ -39,6 +39,27 @@
 </div>
 
 <br />
+<!-- Deep Learning Image Classifier -->
+<details>
+
+<summary>
+
+# :notebook_with_decorative_cover: Deep Learning Image Classification
+
+
+</summary>
+# SGD: Stochastic Gradient Descent
+It is an optimization algorithm used to train neural networks and minimize the cost function, aiming to find the global minimum. The stochastic approach stems from the fact that the gradient is calculated on random subsets of the training data rather than the entire dataset.
+
+<h2>1. Install Dependencies and Setup</h2>
+<code>!pip install tensorflow tensorflow-gpu opencv-python matplotlib</code></br>
+▶ The simplest optimization algorithm is gradient descent.</br>
+▶ Gradient descent is an iterative algorithm that can be applied to any differentiable function.</br>
+<p>
+
+</details>
+
+<!-- Rete Neurale SGD -->
 <details>
 
 <summary>
@@ -87,7 +108,7 @@ Dataset:</br>
 1.0 |  0.5 | 1</br>
 3.0 |  1.5 |-1</br>
 </details>
-<!-- Consegna -->
+<!-- 8 Regine -->
 <details>
 
 <summary>
