@@ -39,6 +39,85 @@
 </div>
 
 <br />
+
+<!-- Agenti -->
+<details>
+
+<summary>
+
+# :notebook_with_decorative_cover: Agent
+
+
+</summary>
+<!-- Robot -->
+<h1>Robot</h1>
+<p>In the context of artificial intelligence and robotics, an <strong>agent</strong> is an entity capable of perceiving its environment, making decisions, and taking actions to achieve certain goals. Agents can range from simple programs to complex robotic systems.</p>
+
+<!-- Environment Class -->
+<h2>Environment Class:</h2>
+<p>The <code>Environment</code> class in this code represents a grid-based environment. It consists of an 11x14 grid with a 1-cell thick border. The grid contains obstacles, represented by cells with a value of 1, and open passages with a value of 0. Additionally, a robot is placed in the environment.</p>
+
+<p>The key functionalities of the <code>Environment</code> class include:</p>
+<ul>
+  <li><strong>Initialization:</strong> Setting up the grid with borders, obstacles, passages, and placing the robot.</li>
+  <li><strong>Perception:</strong> The <code>perceive</code> method returns the values in the 3x3 grid around the robot, excluding the center cell. This mimics the robot's ability to sense its immediate surroundings.</li>
+  <li><strong>Movement:</strong> The <code>move</code> method allows the robot to move in different directions (Up, Down, Left, Right) based on the given action, provided the destination cell is not obstructed.</li>
+</ul>
+
+<!-- Robot Class -->
+<h2>Robot Class:</h2>
+<p>The <code>Robot</code> class represents an agent that operates within the defined environment. It interacts with the environment through perception and action.</p>
+
+<p>The main components of the <code>Robot</code> class include:</p>
+<ul>
+  <li><strong>Initialization:</strong> Associating the robot with a specific environment.</li>
+  <li><strong>Action Function:</strong> The <code>action</code> method defines the robot's behavior. It first checks its perception of the environment. If there are no obstacles nearby (sum of perception is 0), it moves upward. The perception is then rearranged to focus on specific directions, and the robot decides its next move based on the presence of obstacles in those directions.</li>
+</ul>
+
+<!-- Overall Scenario -->
+<h2>Overall Scenario:</h2>
+<p>This code simulates a simple scenario where a robot agent navigates through a gridded environment. The environment includes obstacles, and the robot's task is to move toward unobstructed paths while avoiding obstacles. The state of the environment is visually represented to show the current position of the robot and the layout of obstacles.</p>
+
+<p>In summary, this code represents a basic example of an agent (robot) operating in an environment, perceiving its surroundings, and taking actions accordingly. The scenario demonstrates a simple navigation task within a grid-based world.</p>
+
+
+<!-- Vacum -->
+<h2>Vacuum</h2>
+<p>The provided Python code represents different agents operating in a vacuum world environment. Each agent has a specific function and behavior for cleaning dirty locations within the environment.</p>
+
+
+<h2>Vacuum Class:</h2>
+<p>The <code>Vacuum</code> class serves as the base class for different types of vacuum agents. It contains methods for perceiving the environment, getting the current location, moving, and cleaning. The specific vacuum agents extend this class and implement their unique functionalities.</p>
+
+
+<h2>Environment Class:</h2>
+<p>The <code>Environment</code> class defines the vacuum world environment. It keeps track of the cleanliness status of locations ('A' and 'B'). The <code>perceive</code> method allows agents to gather information about the cleanliness of their current location, and the <code>clean</code> method updates the cleanliness status.</p>
+
+
+<h2>TableVacuum Class:</h2>
+<p>The <code>TableVacuum</code> class is a type of vacuum agent that follows a specific set of rules for moving and cleaning. It checks the cleanliness status of its current location and acts accordingly, moving between locations 'A' and 'B'.</p>
+
+<!-- ReflexVacuum Class -->
+<h2>ReflexVacuum Class:</h2>
+<p>The <code>ReflexVacuum</code> class is another type of vacuum agent with a reflexive behavior. It cleans if the current location is dirty and moves to the right or left based on the current location.</p>
+
+<!-- BlindVacuum Class -->
+<h2>BlindVacuum Class:</h2>
+<p>The <code>BlindVacuum</code> class is a vacuum agent with limited perception. It does not know its current location but still cleans if the location is dirty. It moves randomly between right and left.</p>
+
+<!-- ModelVacuum Class -->
+<h2>ModelVacuum Class:</h2>
+<p>The <code>ModelVacuum</code> class maintains a model of the cleanliness status of both locations. It cleans if the current location is dirty and updates its model. The process continues until both locations are clean.</p>
+
+<!-- Overall Scenario -->
+<h2>Overall Scenario:</h2>
+<p>This code simulates a vacuum world environment with various types of vacuum agents. Each agent has a unique approach to cleaning dirty locations. The scenario demonstrates different agent architectures, including rule-based reflex agents, random agents, and agents with internal models.</p>
+
+<p>In summary, this code provides a basic implementation of vacuum agents operating in a simple environment, showcasing different agent designs and behaviors for cleaning tasks.</p>
+
+
+</details>
+
 <!-- Deep Learning Image Classifier -->
 <details>
 
