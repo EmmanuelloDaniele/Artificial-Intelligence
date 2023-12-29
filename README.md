@@ -257,7 +257,7 @@ In [47]: <code>new_model.predict(np.expand_dims(resize/255, 0))
 </code></br>
 Out [47]: array([[0.01972741]], dtype=float32)</br>
 
-  Predicted class is Happy</br>
+
 
 </details>
 
