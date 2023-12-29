@@ -319,75 +319,67 @@ Dataset:</br>
 </summary>
 
  <p>
-  Il problema consiste nel disporre 8 regine all'interno di una scacchiera regolamentare 8x8, in modo che nessuna possa minacciarne o sia minacciata da un'altra. Ricordiamo che una regina può muoversi di quante caselle vuole, in orizzontale, in verticale e in diagonale. Il problema è affrontabile e risolvibile seguendo percorsi differenti. Ognuno con efficienza e prestazioni molto diverse tra loro. 
-  </p>
-<h1>Testo esercizio</h1>
-Si scriva un programma Python per determinare le soluzioni del rompicapo delle otto regine. Il rompicapo
-delle otto regine è un problema che consiste nel trovare il modo di posizionare otto regine (pezzo degli
-scacchi) su una scacchiera 8 × 8 con una disposizione tale che nessuna di esse possa catturarne un’altra,
-usando i movimenti standard della regina. Perciò, una soluzione dovrà prevedere che nessuna regina
-abbia una colonna, riga o diagonale in comune con un’altra regina.
-Si codifichi lo lo stato del problema come una lista, dove ogni elemento della lista rappresenta la colonna in
-cui è posizionata la regina della riga corrispondente. La scacchiera in figura sarebbe quindi codificata come
-[6, 2, 7, 1, 4, 0, 5, 3]. Lo stato iniziale sarà una lista vuota, e ogni azione consiste nell’aggiungere
-una regina nella riga successiva.
-Suggerimento: Si definisca una funzione is_valid(state) che, dato uno stato, restituisce True se lo
-stato è valido, False se contiene due regine sulla stessa colonna o sulla stessa diagonale (la codifica dello
-stato impedisce che due regine siano sulla stessa riga).
+  The problem involves placing 8 queens on a standard 8x8 chessboard in such a way that none of them can threaten or be threatened by another. It is important to note that a queen can move any number of squares horizontally, vertically, or diagonally. The problem is approachable and solvable through different paths, each with varying efficiency and performance.
+</p>
+<h1>Exercise Text</h1>
+Write a Python program to determine the solutions to the Eight Queens puzzle. The Eight Queens puzzle is a problem that involves finding a way to place eight queens (chess pieces) on an 8 × 8 chessboard in such a way that none of them can capture another, using the standard moves of a queen. Therefore, a solution must ensure that no queen shares a column, row, or diagonal with another queen.
+Encode the problem state as a list, where each element of the list represents the column in which the queen of the corresponding row is positioned. The chessboard in the figure would be encoded as [6, 2, 7, 1, 4, 0, 5, 3]. The initial state will be an empty list, and each action consists of adding a queen in the next row.
+Hint: Define a function `is_valid(state)` that, given a state, returns True if the state is valid and False if it contains two queens in the same column or diagonal (the state encoding prevents two queens from being in the same row).
 
-<h2>Approccio intuitivo iniziale</h2>
+<h2>Initial Intuitive Approach</h2>
 
-Partiamo dalla soluzione "banale". 
+Let's start with the "brute force" solution.
 
-La soluzione consiste nel generare tutte le disposizioni possibili di 8 regine su una scacchiera di  8x8 == 64 caselle. Dal Coefficiente binomiale, calcoliamo che queste disposizioni ammontano a 4.426.165.368. Scriviamo un programma che genera tutte le disposizioni, e scartiamo tutte quelle dove c'è almeno una regina che ne minaccia un'altra. Le disposizioni da analizzare sono un numero decisamente elevato. Per velocizzare la soluzione, abbiamo bisogno di semplificare il problema, per esempio riducendo il numero di disposizioni da analizzare. 
+The solution involves generating all possible arrangements of 8 queens on an 8x8 chessboard, totaling 64 squares. Using the binomial coefficient, we calculate that these arrangements amount to 4,426,165,368. We write a program that generates all arrangements and discards those where at least one queen threatens another. The number of arrangements to analyze is significantly high. To speed up the solution, we need to simplify the problem, for example, by reducing the number of arrangements to be analyzed.
 
-<h2>Semplifica.</h2>
+<h2>Simplify.</h2>
 
-Una prima semplificazione potrebbe essere, per esempio, imporre una sola regina per ogni riga. Due regine nella stessa riga si minacciano in orizzontale. 
+A first simplification could be, for example, to impose only one queen per row. Two queens in the same row threaten each other horizontally.
 
-E nelle otto righe, tutte le regine stanno sicuramente disposte in posizioni (colonne) diverse. Per non minacciarsi in verticale. 
+And in the eight rows, all the queens are definitely arranged in different positions (columns) in our solution. To avoid threats vertically. 
 
-Quindi in tutta la scacchiera, nella nostra soluzione avremo sicuramente una riga con una regina nella prima posizione a sinistra, una riga con la regina in seconda posizione eccetera. 
+So, on the entire chessboard, in our solution, we will definitely have a row with a queen in the leftmost position, a row with the queen in the second position, and so on. 
 
-Questo algoritmo semplificato, invece di generare tutte le disposizioni descritte sopra, prevede di generare solo le combinazioni possibili di 8 righe, ognuna con una regina in posizione diversa. Nella prima riga ho 8 posizioni possibili. Nella seconda ne ho sette (in realtà ne ho 5 oppure sei, considerando le caselle minacciate in diagonale). Nella terza ne ho sei, eccetera. Queste combinazioni sono 8 fattoriale (8! == 40320), un numero di 5 ordini di grandezza inferiore alle disposizioni calcolate sopra. Anche qui dobbiamo generare le combinazioni e scartare tutte quelle dove è presente almeno una regina che ne minaccia un'altra. 
+This simplified algorithm, instead of generating all the arrangements described above, generates only the possible combinations of 8 rows, each with a queen in a different position. In the first row, I have 8 possible positions. In the second one, I have seven (actually, I have 5 or 6, considering the diagonally threatened squares). In the third one, I have six, and so on. These combinations are 8 factorial (8! == 40320), an order of magnitude lower than the arrangements calculated above. Here we have to generate the combinations and discard all those where at least one queen threatens another. 
 
-La minaccia potrà arrivare solo in diagonale, in quanto le minacce in orizzontale e in verticale le abbiamo già eliminate “per costruzione”.
-Possiamo ottimizzare ancora?
+The threat can only come diagonally, as threats horizontally and vertically have already been eliminated "by construction."
+Can we optimize further?
 
-Per un problema di ordine 8, circa quarantamila combinazioni da analizzare sono relativamente poche. Ma cosa succede se vogliamo risolvere il problema con 16 regine su una scacchiera 16x16? Oppure se volessimo risolvere il problema con 24? 24 Fattoriale (24!) è un numero dell’ordine di 10^23. Se avessimo un miliardo di calcolatori, ognuno in grado di esaminare un miliardo di combinazioni al secondo, potremmo calcolare tutte le soluzioni in circa una settimana di calcolo.  Decisamente troppe combinazioni da generare e da esaminare in tempi “umani” con risorse limitate. Abbiamo bisogno di semplificare ancora il problema, perchè questo sia affrontabile. 
+For a problem of order 8, about forty thousand combinations to analyze are relatively few. But what if we want to solve the problem with 16 queens on a 16x16 chessboard? Or if we wanted to solve the problem with 24? 24 Factorial (24!) is a number of the order of 10^23. If we had a billion computers, each capable of examining a billion combinations per second, we could calculate all the solutions in about a week of computation. Definitely too many combinations to generate and analyze in "human" time with limited resources. We need to further simplify the problem to make it manageable.
 
-<h2>Ma torniamo al problema di ordine 8. </h2>
+<h2>But let's go back to the order 8 problem. </h2>
 
-Per esempio, possiamo pensare di cominciare a controllare le minacce in diagonale anche con le combinazioni incomplete, mentre le costruiamo, senza aspettare di aver piazzato tutte le regine per farlo. Per ogni riga, quindi, prima di piazzare una regina nella casella candidata, controllo le minacce in diagonale su questa casella. Se la casella è minacciata, esamino la successiva nella riga. Dispongo la regina nella posizione non minacciata e non ancora provata in precedenza. Se arrivo alla fine della riga senza altre posizioni disponibili, torno alla riga precedente, dove applico la stessa logica, cercando una nuova disposizione per quella regina. Quando arrivo a disporre tutte le 8 regine sulle 8 righe, la soluzione è valida, la conteggio e la stampo o la memorizzo. E continuo la ricerca. Quando ho generato tutte le disposizioni possibili, mi fermo. 
+For example, we can think of starting to check diagonal threats even with incomplete combinations, while building them, without waiting to have placed all the queens to do so. For each row, therefore, before placing a queen in the candidate square, I check for diagonal threats on this square. If the square is threatened, I move on to the next one in the row. I place the queen in the non-threatened and not previously tried position. If I reach the end of the row without other available positions, I go back to the previous row, where I apply the same logic, looking for a new arrangement for that queen. When I have placed all 8 queens on the 8 rows, the solution is valid; I count it and print or store it. And I continue the search. When I have generated all possible combinations, I stop.
 
-Questo approccio si presta molto bene ad un'implementazione ricorsiva. Se nella riga attuale non sono rimaste altre posizioni utilizzabili, perchè tutte già provate o minacciate dalle regine disposte nelle righe precedenti, interrompo la ricerca sulla riga attuale e innesco il backtracking tornando alla riga precedente. Non provando (e quindi non verificando) tutte le combinazioni complete possibili, è chiaramente molto più efficiente dei precedenti. Perchè quando innesco il backtracking per mancanza di posizioni sulla riga attuale, sto in realtà scartando una grossa porzione di combinazioni da analizzare. Sto scartando in un colpo solo tutto il sottoalbero di combinazioni possibili, ma sicuramente non valide. Albero che può essere decisamente grande. 
-<h2>Come capiamo se una casella è minacciata?</h2>
+This approach lends itself very well to a recursive implementation. If in the current row there are no other usable positions because all have already been tried or are threatened by the queens placed in the previous rows, I interrupt the search on the current row and trigger backtracking, returning to the previous row. By not trying (and therefore not verifying) all possible complete combinations, it is clearly much more efficient than the previous ones. Because when I trigger backtracking due to a lack of positions in the current row, I am actually discarding a large portion of combinations to be analyzed. I am discarding all at once the entire subtree of possible combinations, but certainly not valid. A tree that can be decidedly large. 
+<h2>How do we know if a square is threatened?</h2>
 
-Come già accennato, se vogliamo estendere il problema da 8 a 12, 16 o addirittura 24 regine, rispettivamente su scacchiere 12x12, 16x16 o 24x24, le prime soluzioni proposte sopra si scontrano contro la complessità esponenziale e fattoriale del problema. E diventano quindi inapplicabili. Il metodo ricorsivo rimane invece ancora applicabile, anche per dimensioni del problema più grandi di 8. Ora ci serve un metodo veloce per capire se la casella analizzata è minacciata dalle regine già disposte sopra. Accoppiato con un metodo efficiente per rappresentare questi dati in memoria, in modo da poter fare sia le disposizioni delle regine che le verifiche sulle minacce molto velocemente. Intuitivamente si potrebbe usare una matrice 8x8 per rappresentare la scacchiera. Come vedremo in seguito, esistono strutture più compatte ed efficienti, data la natura dei dati e dei calcoli da fare. Per ora usiamo una matrice per rappresentare graficamente quello che vogliamo fare. Usiamo un simbolo 'R' per piazzare una regina in una riga della matrice, e un simbolo 'M' per dire che una casella è minacciata.
+As mentioned above, if we want to extend the problem from 8 to 12, 16, or even 24 queens, respectively on 12x12, 16x16, or 24x24 chessboards, the first solutions proposed above run into the exponential and factorial complexity of the problem. And become therefore inapplicable. The recursive method remains still applicable, even for problem sizes larger than 8. Now we need a fast method to understand if the square analyzed is threatened by the queens already placed above. Coupled with an efficient method for representing this data in memory, so that we can both arrange the queens and check threats very quickly. Intuitively, we could use an 8x8 matrix to represent the chessboard. As we will see later, there are more compact and efficient structures, given the nature of the data and calculations to be done. For now, let's use a matrix to graphically represent what we want to do. We use an 'R' symbol to place a queen in a row of the matrix and an 'M' symbol to indicate that a square is threatened.
 
-Numeriamo righe e colonne a partire dall'angolo in alto a sinistra, con i numeri di riga e colonna che vanno da 0 a 7. All’inizio, piazziamo la prima regina in (0,0) (riga,colonna) e segnamo le caselle minacciate. 
+We number rows and columns starting from the top left corner, with row and column numbers ranging from 0 to 7. At the beginning, we place the first queen at (0,0) (row, column) and mark the threatened squares. 
 
-Per piazzare la seconda regina nella seconda riga usiamo la casella nella terza colonna, in (1,2). Perchè (1,1) è minacciata in diagonale. E anche qui marchiamo le caselle minacciate. 
+To place the second queen in the second row, we use the square in the third column, at (1,2). Because (1,1) is threatened diagonally. And here we mark the threatened squares as well. 
 
-Per piazzare la terza regina nella terza riga (riga 2), possiamo piazzarla solo a partire dalla quinta colonna (2,4), in quanto le precedenti da (2,0) a (2,3) sono tutte minacciate. 
+To place the third queen in the third row (row 2), we can only place it starting from the fifth column (2,4), as the previous ones from (2,0) to (2,3) are all threatened. 
 
-E così via. Come si vede, ogni volta che piazziamo una regina si evitano diverse combinazioni da esplorare in seguito, per via delle caselle minacciate. Nella riga 3 per esempio cominciamo ad esplorare l'albero con la regina in (3,1) per vedere se contiene soluzioni. Finito di esplorare questo, proveremo con la regina in (3,6), scartando le precedenti da (3,2) a (3,5), in quanto minacciate. Nella riga 5 abbiamo solo la possibilità di piazzare la nostra regina in (5,3).
+And so on. As you can see, every time we place a queen, several combinations are avoided in the future, due to the threatened squares. In the 3rd row, for example, we start exploring the tree with the queen at (3,1) to see if it contains solutions. Once done exploring this, we will try with the queen at (3,6), discarding the previous ones from (3,2) to (3,5), as they are threatened. In the 5th row, we only have the possibility to place our queen at (5,3).
 
-<h2>E se la minaccia arriva in diagonale?</h2>
+<h2>What if the threat comes diagonally?</h2>
 
-Se come accennato sopra, per costruzione piazziamo una regina per riga, in una posizione diversa dalle regine delle righe precedenti, escludiamo subito le minacce in orizzontale e in verticale. Dobbiamo "solo" verificare se la posizione “candidata” è minacciata in diagonale dalle regine piazzate in precedenza. Per esempio, possiamo dire che una regina in posizione (4,5), è minacciata dalla regina nella riga precedente (riga 3) solo se questa regina si trova in posizione (3,4) o in posizione (3,6). Le caselle in diagonale in alto a destra e a sinistra di (4,5).
+As mentioned above, by construction, if we place a queen per row, in a position different from the queens in the previous rows, we immediately exclude threats horizontally and vertically. We only need to verify if the "candidate" position is threatened diagonally by the queens placed previously. For example, we can say that a queen in position (4,5) is threatened by the queen in the previous row (row 3) only if this queen is in position (3,4) or in position (3,6). The squares diagonally at the top right and top left of (4,5).
 
-Se lo è, ci fermiamo e troviamo la prossima casella candidata. Se non lo è, andiamo e controlliamo se è minacciata dalla regina in riga 2. La casella (4,5) è minacciata dalla regina in riga 2 se questa si trova in posizione (2,3) o in posizione (2,7). 
+If it is, we stop and find the next candidate square. If it is not, we go and check if it is threatened by the queen in row 2. The square (4,5) is threatened by the queen in row 2 if it is in position (2,3) or in position (2,7). 
 
-E così via, fino a controllare se la nostra casella candidata (4,5) è minacciata dalla regina nella  prima riga (riga 0). Dobbiamo quindi generare le coordinate delle caselle nelle due direzioni diagonali in alto a destra e in alto a sinistra della posizione che stiamo controllando, e verificare se a queste coordinate è presente una regina. 
+And so on, until checking if our candidate square (4,5) is threatened by the queen in the first row (row 0). We must then generate the coordinates of the squares in the two diagonally right and left directions above the position we are checking and check if a queen is present at these coordinates.
 
-Per (4,5), che è la nostra casella candidata, queste caselle “minaccianti” sono: 
+For (4,5), which is our candidate square, these "threatening" squares are:
 
-(3,4), (2,3), (1,2), (0,1) per la diagonale a sinistra 
+(3,4), (2,3), (1,2), (0,1) for the left diagonal 
 
-(3,6), (2,7) per la diagonale destra 
+(3,6), (2,7) for the right diagonal 
 
-Generalizzando, per verificare se la casella (j,k) è minacciata in diagonale dalle regine disposte sopra, dobbiamo verificare, riga per riga a ritroso partendo dalla riga j, la presenza di una regina nelle caselle che hanno colonna k-1 o k+1 nella riga j-1, k-2 o k+2 nella riga j-2, k-3 o k+3 nella riga j-3 eccetera, indietro fino alla riga 0. Se otteniamo una colonna negativa (minore di zero) o maggiore di 7, ovviamente possiamo ignorare il check. 
+In general, to check if the square (j,k) is threatened diagonally by the queens arranged above, we must check, row by row starting from row j, the presence of a queen in the squares that have column k-1 or k+1 in row j-1, k-2 or k+2 in row j-2, k-3 or k+3 in row j-3, etc., backward to row 0. If we get a negative column (less than zero) or greater than 7, of course, we can ignore the check. 
+
 
 </details>
 
