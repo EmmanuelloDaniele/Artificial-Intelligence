@@ -51,18 +51,42 @@
 # SGD: Stochastic Gradient Descent
 It is an optimization algorithm used to train neural networks and minimize the cost function, aiming to find the global minimum. The stochastic approach stems from the fact that the gradient is calculated on random subsets of the training data rather than the entire dataset.
 
+<h2>2. Remove dodgy images</h2>
+In [4]: <code>import cv2</code></br>
+In [4]: <code>import imghdr</code></br>
+In [6]: <code>data_dir = 'data' </code></br>
+In [6]: <code>image_exts = ['jpeg','jpg', 'bmp', 'png']</code></br>
+ </br>
+In [2]: <code>for image_class in os.listdir(data_dir): 
+    for image in os.listdir(os.path.join(data_dir, image_class)):
+        image_path = os.path.join(data_dir, image_class, image)
+        try: 
+            img = cv2.imread(image_path)
+            tip = imghdr.what(image_path)
+            if tip not in image_exts: 
+                print('Image not in ext list {}'.format(image_path))
+                os.remove(image_path)
+        except Exception as e: 
+            print('Issue with image {}'.format(image_path))
+            # os.remove(image_path)</code></br>
+In [2]: <code>for gpu in gpus:</code></br>
+In [2]: <code>tf.config.experimental.set_memory_growth(gpu, True)</code></br>
+In [3]: <code>tf.config.list_physical_devices('GPU')</code></br>
+
+Out [3]: <code>[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')] </code></br>
+
 <h2>1. Install Dependencies and Setup</h2>
 In [ ]: <code>!pip install tensorflow tensorflow-gpu opencv-python matplotlib</code></br>
 In [ ]: <code>!pip list</code></br>
 In [1]: <code>import tensorflow as tf</code></br>
 In [1]: <code>import os</code></br>
- # Avoid OOM errors by setting GPU Memory Consumption Growth
-In [2]: <code>gpus = tf.config.experimental.list_physical_devices('GPU')</code>
-In [2]: <code>for gpu in gpus:</code>
+ # Avoid OOM errors by setting GPU Memory Consumption Growth</br>
+In [2]: <code>gpus = tf.config.experimental.list_physical_devices('GPU')</code></br>
+In [2]: <code>for gpu in gpus:</code></br>
 In [2]: <code>tf.config.experimental.set_memory_growth(gpu, True)</code></br>
 In [3]: <code>tf.config.list_physical_devices('GPU')</code></br>
 
-Out [3]: <code>[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')] </code>
+Out [3]: <code>[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')] </code></br>
 
 <p>
 
