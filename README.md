@@ -50,7 +50,7 @@
 
 </summary>
 <!-- Robot -->
-<h1>Robot</h1>
+<div align="center"><h1>Robot</h1></div>
 <p>In the context of artificial intelligence and robotics, an <strong>agent</strong> is an entity capable of perceiving its environment, making decisions, and taking actions to achieve certain goals. Agents can range from simple programs to complex robotic systems.</p>
 
 <!-- Environment Class -->
@@ -86,7 +86,7 @@
 <p>The provided Python code represents different agents operating in a vacuum world environment. Each agent has a specific function and behavior for cleaning dirty locations within the environment.</p>
 
 
-<h2>Vacuum Class:</h2>
+<div align="center"><h1>Vacuum Class:</h1></div>
 <p>The <code>Vacuum</code> class serves as the base class for different types of vacuum agents. It contains methods for perceiving the environment, getting the current location, moving, and cleaning. The specific vacuum agents extend this class and implement their unique functionalities.</p>
 
 
