@@ -66,14 +66,14 @@ x2--w2->P------------->g(·)------------>
   /
 1/
 </p>
-▶ Il neurone riceve un insieme di input x = (x1, x2, . . . , xn, 1).</br>
-▶ Ogni input xi è moltiplicato per un peso Wi.</br>
+Il neurone riceve un insieme di input x = (x1, x2, . . . , xn, 1),
+ogni input xi è moltiplicato per un peso Wi.</br>
 ▶ I pesi W sono i parametri della rete neurale.</br>
 ▶ I pesi W sono inizializzati casualmente.</br>
 ▶ I pesi W sono aggiornati durante l’addestramento</br>
-▶ Consideriamo una rete neurale con un solo neurone.</br>
-▶ La rete deve imparare a separare due classi linearmente separabili sul piano.</br>
-▶ La rete ha come funzione di attivazione la funzione identità.</br>
+Consideriamo una rete neurale con un solo neurone.
+La rete deve imparare a separare due classi linearmente separabili sul piano
+e ha come funzione di attivazione la funzione identità.</br>
 g(x) = x</br>
 g′(x) = 1</br>
 Dataset:</br>
