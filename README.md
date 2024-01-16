@@ -129,10 +129,10 @@
 </summary>
 
 <p>
-▶Traning a neural network means fidingi the weights' values that minimize an error function on the traning set.
-▶To the optima weights, it is necesssary to use an optimization algorithm
-▶The simplest optimization alghorithm is GRADIENT DESCENT
-▶Gradient descent is an interative algorithm that can be applied to any diffentiable function</p>
+<p>▶Traning a neural network means fidingi the weights' values that minimize an error function on the traning set.</p>
+<p>▶To the optima weights, it is necesssary to use an optimization algorithm</p>
+<p>▶The simplest optimization alghorithm is GRADIENT DESCENT</p>
+<p>▶Gradient descent is an interative algorithm that can be applied to any diffentiable function</p>
 
 <p>Neural networks are mathematical models inspired by the nervous sysem</p>
 <p>A neural network is composed of a set of artificial neurons.
