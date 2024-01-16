@@ -134,10 +134,60 @@
 <p>▶The simplest optimization alghorithm is GRADIENT DESCENT</p>
 <p>▶Gradient descent is an interative algorithm that can be applied to any diffentiable function</p>
 
-<p>Neural networks are mathematical models inspired by the nervous sysem</p>
+<p>Neural networks are mathematical models inspired by the nervous system</p>
 <p>A neural network is composed of a set of artificial neurons.
 A neuron is a mathematical model inspirated by the biological neuron A neuron consists of: a set of input connections an aggregation function and an activaction function</p>
 
+<p>▶ The neuron receives a set of inputs x = (x1, x2, . . . , xn, 1).</p>
+<p>▶ Each input xi is multiplied by a weight Wi.</p>
+<p>▶ The weights W are the parameters of the neural network.</p>
+<p>▶ The weights W are initialized randomly.</p>
+<p>▶ The weights W are updated during training.</p>
+
+<p>
+PyTorch is a very effective deep learning framework for the construction and traning of neural nerworks. It is based on Tensor, which is a multidimensional array(often involves operation on multidimensional data, and the use of tensor simplifies data management). It is efficient for tensor operations and provides numerous optimization algorithms.
+</p>
+
+<p> We weill primarilyy use the following components:
+</p>
+<p>torch.tensor: multidimensional arrays </br>
+torch.nn: modules for defining neural networks. </br>
+activation functions</br>
+layars</br>
+loss</br>
+torch.optim: modules for optimatization</br></p>
+
+<p>Try to implement a Neural Net Toy with PyTorch</p>
+
+<code>
+import torch
+import torch.nn as nn
+
+class ToyNet(nn.Module):
+  def __init__(self):
+    super(ToyNet, self) .__init__()
+    self.fc1 = nn.Linear(2, 1)
+
+  def forward(self, x):
+    x = self.fc1(x)
+    return x
+</code>
+<p> nn.Moduls is base class for all modules in PyTorch NeuralNet</p>
+
+<h2>To Access The Parameters</h2>
+<code>
+>>> net = ToyNet()
+>>> print(net)
+ToyNet (
+  (fc1): Linear(in_features=2, out_features=1, bias=True)
+)
+>>> for name , param in net.named_parameters():
+...   print(name, param)
+fc1.weight Paramet contaning:
+tensor([[-0.6990, 0.4320]], requires_grad=True)
+fc1.bias Parameter contaning:
+tensor([-0.0255], requires_grad=True)
+</code>
 </details>
 
 <!-- Research -->
