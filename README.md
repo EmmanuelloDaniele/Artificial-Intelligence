@@ -163,14 +163,16 @@ torch.optim: modules for optimatization</br></p>
 import torch
 import torch.nn as nn
 
-class ToyNet(nn.Module):
+<code>class ToyNet(nn.Module):
   def __init__(self):
     super(ToyNet, self) .__init__()
     self.fc1 = nn.Linear(2, 1)
-
+</code>
+<code>
   def forward(self, x):
     x = self.fc1(x)
     return x
+  </code>
 </code>
 <p> nn.Moduls is base class for all modules in PyTorch NeuralNet</p>
 
