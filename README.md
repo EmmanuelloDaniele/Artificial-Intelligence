@@ -250,8 +250,7 @@ t xt − ||xt||2
 </p>
 
 </details>
-```
-```
+``````
 
 <!-- Research -->
 <details>
