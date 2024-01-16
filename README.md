@@ -215,7 +215,7 @@ import matplotlib.pyplot as plt
 def plot(x,y, net):
     plt.scatter(x[:, 0], x[: , 1], c=y)
     w = net.fc1.weight.data
-    b = net.fc1.bias.data
+    b = net.fc1.bias.data</code>
 
     x1 = np.linspace(min(x[:, 0]), max(x[:, 0]), 100)
     # w_0*x + w_1*y +b = 0
