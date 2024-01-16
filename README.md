@@ -202,7 +202,7 @@ tensor ([[1.0 , 0.0]] , requires_grad = True )
 </code>
 
 <h2>Load dates and View</h2>
-
+<code>
   def load_data(fie):
     data = np.loadtxt(file)
     x = data [:, : -1]
