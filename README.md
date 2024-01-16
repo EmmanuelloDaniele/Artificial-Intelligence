@@ -202,14 +202,14 @@ tensor ([[1.0 , 0.0]] , requires_grad = True )
 </code>
 
 <h2>Load dates and View</h2>
-<section>
+```html
   def load_data(fie):
     data = np.loadtxt(file)
     x = data [:, : -1]
     y = data [:, -1]
     return torch.tensor(x, dtype=torch.float32),\
             torch.tensor(y, dtype=torch.floar32)
-</sections>
+```
 
 <code>import matplotlib.pyplot as plt
 def plot(x,y, net):
