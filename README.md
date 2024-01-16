@@ -127,30 +127,17 @@
 
 
 </summary>
-<h2> </h2>
+
 <p>
 ▶Traning a neural network means fidingi the weights' values that minimize an error function on the traning set.
 ▶To the optima weights, it is necesssary to use an optimization algorithm
 ▶The simplest optimization alghorithm is GRADIENT DESCENT
 ▶Gradient descent is an interative algorithm that can be applied to any diffentiable function</p>
-<details>
-<summary>ITA</summary>
 
-</deatils>
 <p>Neural networks are mathematical models inspired by the nervous sysem</p>
 <p>A neural network is composed of a set of artificial neurons.
 A neuron is a mathematical model inspirated by the biological neuron A neuron consists of: a set of input connections an aggregation function and an activaction function</p>
-<details>
-<summary>ITA</summary>
-Italiano:
-Le reti neurali sono modelli matematici ispirati al sistema nervoso.
-▶ Una rete neurale è costituita da un insieme di neuroni artificiali.
-▶ Un neurone è un modello matematico ispirato al neurone biologico.
-▶ Un neurone è composto da:
-▶ un insieme di connessioni in ingresso
-▶ una funzione di aggregazione
-▶ una funzione di attivazione
-</deatils>
+
 </details>
 
 <!-- Research -->
