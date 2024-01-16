@@ -157,22 +157,21 @@ layars</br>
 loss</br>
 torch.optim: modules for optimatization</br></p>
 
-<p>Try to implement a Neural Net Toy with PyTorch</p>
+<h2>Try to implement a Neural Net Toy with PyTorch</h2>
 
 <code>
 import torch
 import torch.nn as nn
 
-<code>class ToyNet(nn.Module):
+class ToyNet(nn.Module):
   def __init__(self):
     super(ToyNet, self) .__init__()
     self.fc1 = nn.Linear(2, 1)
-</code>
-<code>
+
   def forward(self, x):
     x = self.fc1(x)
     return x
-  </code>
+  
 </code>
 <p> nn.Moduls is base class for all modules in PyTorch NeuralNet</p>
 
