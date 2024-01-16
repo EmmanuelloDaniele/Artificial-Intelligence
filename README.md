@@ -159,7 +159,7 @@ torch.optim: modules for optimatization</br></p>
 
 <h2>Try to implement a Neural Net Toy with PyTorch</h2>
 
-<code>
+```python
 import torch
 import torch.nn as nn
 
@@ -171,12 +171,13 @@ class ToyNet(nn.Module):
   def forward(self, x):
     x = self.fc1(x)
     return x
-</code>
+```
 
 <p> nn.Moduls is base class for all modules in PyTorch NeuralNet</p>
 
 <h2>To Access The Parameters</h2>
-<code>
+
+```python
 >>> net = ToyNet()
 >>> print(net)
 ToyNet (
@@ -188,7 +189,7 @@ fc1.weight Paramet contaning:
 tensor([[-0.6990, 0.4320]], requires_grad=True)
 fc1.bias Parameter contaning:
 tensor([-0.0255], requires_grad=True)
-</code>
+```
 
 <p>It is pobbible to modify the parameters of the neural network by directly accessing the tensor</p>
 <p>In practice, this is often inconvenient, and prameters are not typically modified manually.</p>
@@ -214,7 +215,8 @@ tensor ([[1.0 , 0.0]] , requires_grad = True )
             torch.tensor(y, dtype=torch.floar32)
 ```
 
-<code>import matplotlib.pyplot as plt
+```python
+import matplotlib.pyplot as plt
 def plot(x,y, net):
     plt.scatter(x[:, 0], x[: , 1], c=y)
     w = net.fc1.weight.data
@@ -226,7 +228,7 @@ def plot(x,y, net):
     plt.plot(x1, x2)
     plt.ylim(min(x[:,1])-1,max(x[:,1])+1)
     plt.show()
-</code>
+```
 
 <p>
 Correct current error</br>
