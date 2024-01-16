@@ -211,7 +211,7 @@ def load_data(fie):
           torch.tensor(y, dtype=torch.floar32)
 </code>
 
-import matplotlib.pyplot as plt
+<code>import matplotlib.pyplot as plt
 def plot(x,y, net):
     plt.scatter(x[:, 0], x[: , 1], c=y)
     w = net.fc1.weight.data
