@@ -228,7 +228,7 @@ def plot(x,y, net):
     plt.plot(x1, x2)
     plt.ylim(min(x[:,1])-1,max(x[:,1])+1)
     plt.show()
-```
+  ```
 
 <p>
 Correct current error</br>
@@ -241,7 +241,7 @@ t xt + xT
 t xt
 = WT
 t xt + ||xt||2
-NEGATIVE 
+NEGATIVE </br>
 WT x > 0
 WT
 t+1x = (Wt − xt)T xt
@@ -253,8 +253,151 @@ t xt − ||xt||2
 </detalis>
 </p>
 
-</details>
+```python 
+W1 ← 0
+t ← 1
+while non convergente do
+δ ← y−sign(WTt xt)/2
+ Wt+1 ← Wt + δxt
+ t ← t + 1
+ end while
 ```
+<p>
+Interpretazione geometrica: rotate the decision hyperplane until the points are correctly classified. IF the data is linearly separable THEN the algorithm converges in a finite number of steps. Otherwise, the algorithm will not converge.
+</p>
+
+<h2>Traning: Evaluate the erroe on a sample and update the weights.
+</h2>
+
+```python
+class ToyNet(nn.Module):
+  def __init__(self):
+    super(ToyNet, self) .__init__()
+    self.fc1 = nn.Linear(2, 1)
+
+  def forward(self, x):
+    x = self.fc1(x)
+    return x
+  
+  def train_sample_percepition(self, x,y):
+    y_hat = torch.sign(self.forward(x))
+    delta = (y - y_hat)/2
+    self.fc1.weight.data + = delta*x
+    self.fc1.bias.data += delta
+```
+
+<h2>Traning Loop
+</h2>
+
+```python
+net = ToyNet.ToyNer()
+x , y = load_data(DATA)
+
+while True:
+  #shuffle x and y
+  indices = torch.rendperm(len(x))
+  x = x[indices]
+  y = y[indices]
+
+  for i in range(len(x)):
+    net.train_sample_perceptron(x[i], y[i])
+
+  plot(x, y, net)
+
+  y_hat = torch.sign(net.forward(x))
+  if torch.all(y_hat.flatten() == y):
+      break
+print("w:", net.fc1.weight.data)
+print("b:", net.fc1.bias.data)
+```
+<h1>Gradient Descent</h1>
+<p>When we examine the learning process of a neural network, we enter the realm of optimization. Efforts are directed towards minimizing a specific error function calculated on the training set. This is the core of neural network training.</br>
+
+Error functions are crucial in this context, and there are several, each suitable for specific types of problems. For classification problems, as in the case of cross-entropy, the goal is to reduce the discrepancy between the network's predictions and the actual labels. The formula, with the summation over all classes, reflects this process of penalizing incorrect predictions.</br>
+
+In regression situations, where numerical values are predicted instead of classes, we often turn to mean squared error. Here, the focus is on minimizing the difference between the network's prediction and the actual value, squared.</br>
+
+It is essential to note that during training, we usually use only a subset of the available data, the training set. This approach allows us to train the network on a representative sample without considering the entire dataset, making the process more efficient.</p>
+
+<h2>SGD Alghorith</h2>
+<p>
+1Weights W are initialized randomly.</br>
+2For each element x in the training set:</br>
+2.2 Calculate the network output ˆy = g(WT x).</br>
+2.3 Calculate the error through the chosen loss function.</br>
+2.4 Calculate the gradient of the loss with respect to the weights ∂L ∂Wi .</br>
+2.5 Update the weights in the direction opposite to the gradient.</br>
+
+Repeat the process until the error is sufficiently low or the number of epochs is sufficiently high.</br>
+</p>
+
+<h2>Gradient Calculation</h2>
+<p>We use Mean Squared Error (MSE) ad the loss fuction.</p>
+<p>
+Optimization occurs through gradiet descent.
+</p>
+<p>We differentiate the loss with respect to the output ∂L</p>
+<p>Weight Update reule:Wi = Wi − α × (ˆy − y) × xi </p>
+
+```python
+class ToyNet(nn.module):
+  ...
+  def manual_sgd_train(self, x, y, epochs=40, lr=0.05):
+    #train using SGD optimizer and MSE loss
+    for _ in range (epocs):
+      for i in tange(len(x)):
+        y_hat = self.forward(x[i])
+        error = y_hat - y [i]
+        self.fc1.weight.data -= lr * error * x[i]
+        self.fc1.bias.data -= lr * error * 1
+```
+<h2>Not Artigianal Solution</h2>
+
+```python
+class ToyNet(nn.Module):
+  ...
+  def train (self, x, y, epochs=40, lr= 0.05):
+    #train using SGD optimizer
+    optimizer = torch.optim.SGD(self.parameters(), lr=lr)
+    criterion = nn.MSELoss()
+    for _ in range(epochs):
+      optimizer.zero_grad()
+      y_hat = self.forward(x).flatten()
+      loss = criterion(y_hat, y)
+      loss.backwar()
+      optimizer.step()
+```
+<h2>Funciton for Plotting Classifier not linear with more layer</h2>
+
+```python
+def plot2 (X ,y , model , title = " " ) :
+    # define bounds of the domain
+    min1 , max1 = X [: , 0]. min () -1 , X [: , 0]. max () +1
+    min2 , max2 = X [: , 1]. min () -1 , X [: , 1]. max () +1
+    # define the x and y scale
+    x1grid , x2grid = np . arange ( min1 , max1 , 0.025) , np . arange ( min2 , max2 , 0.025)
+    # create all of the lines and rows of the grid
+    xx , yy = np . meshgrid ( x1grid , x2grid )
+    # flatten each grid to a vector
+    r1 , r2 = xx . flatten () , yy . flatten ()
+    # horizontal stack vectors to create x1 , x2 input for the model
+    grid = [[ x1 , x2 ] for x1 , x2 in zip ( r1 , r2 ) ]
+    # make predictions for the grid
+    yhat = model . forward ( torch . tensor ( grid , dtype = torch . float32 ) ) . detach () . numpy ()
+    # reshape the predictions back into a grid
+    zz = yhat . reshape ( xx . shape )
+    # plot the grid of x , y and z values as a surface
+    plt . contourf ( xx , yy , zz , cmap = ’ viridis ’)
+    # create scatter plot for samples from each class
+    plt . scatter ( X [: , 0] , X [: , 1] , c =y , cmap = ’ viridis ’ , edgecolors = ’ black ’)
+    plt . title ( title )
+    # show the plot
+    plt . pause (2)
+    plt . clf ()
+```
+
+</details>
+
 
 <!-- Research -->
 <details>
