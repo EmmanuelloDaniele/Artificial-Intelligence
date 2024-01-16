@@ -171,8 +171,8 @@ class ToyNet(nn.Module):
   def forward(self, x):
     x = self.fc1(x)
     return x
-  
 </code>
+
 <p> nn.Moduls is base class for all modules in PyTorch NeuralNet</p>
 
 <h2>To Access The Parameters</h2>
@@ -189,6 +189,65 @@ tensor([[-0.6990, 0.4320]], requires_grad=True)
 fc1.bias Parameter contaning:
 tensor([-0.0255], requires_grad=True)
 </code>
+
+<p>It is pobbible to modify the parameters of the neural network by directly accessing the tensor</p>
+<p>In practice, this is often inconvenient, and prameters are not typically modified manually.</p>
+<code>
+>>> print ( net . fc1 . weight )
+tensor ([[ -0.6990 , 0.4320]] , requires_grad = True )
+>>> net . fc1 . weight . data = torch . nn . Parameter ( torch . tensor ([[1.0 ,
+0.0]]) )
+>>> print ( net . fc1 . weight )
+tensor ([[1.0 , 0.0]] , requires_grad = True )
+</code>
+
+<h2>Load dates and View</h2>
+<code>
+def load_data(fie):
+  data = np.loadtxt(file)
+  x = data [:, : -1]
+  y = data [:, -1]
+  return torch.tensor(x, dtype=torch.float32),\
+          torch.tensor(y, dtype=torch.floar32)
+</code>
+<code>
+import matplotlib.pyplot as plt
+def plot(x,y, net):
+    plt.scatter(x[:, 0], x[: , 1], c=y)
+    w = net.fc1.weight.data
+    b = net.fc1.bias.data
+
+    x1 = np.linspace(min(x[:, 0]), max(x[:, 0]), 100)
+    # w_0*x + w_1*y +b = 0
+    x2 = -(w[0, 0]*x1 +b[0]/w[0, 1])
+    plt.plot(x1, x2)
+    plt.ylim(min(x[:,1])-1,max(x[:,1])+1)
+    plt.show()
+</code>
+
+<p>
+Correct current error</br>
+<detalis>
+POSITIVE W^T(x) < 0
+WT
+t+1x = (Wt + xt)T xt
+= WT
+t xt + xT
+t xt
+= WT
+t xt + ||xt||2
+NEGATIVE 
+WT x > 0
+WT
+t+1x = (Wt − xt)T xt
+= WT
+t xt − xT
+t xt
+= WT
+t xt − ||xt||2
+</detalis>
+</p>
+
 </details>
 
 <!-- Research -->
