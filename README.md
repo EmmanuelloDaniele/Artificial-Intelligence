@@ -192,6 +192,7 @@ tensor([-0.0255], requires_grad=True)
 
 <p>It is pobbible to modify the parameters of the neural network by directly accessing the tensor</p>
 <p>In practice, this is often inconvenient, and prameters are not typically modified manually.</p>
+
 ```python
 >>> print ( net . fc1 . weight )
 tensor ([[ -0.6990 , 0.4320]] , requires_grad = True )
@@ -199,6 +200,7 @@ tensor ([[ -0.6990 , 0.4320]] , requires_grad = True )
 0.0]]) )
 >>> print ( net . fc1 . weight )
 tensor ([[1.0 , 0.0]] , requires_grad = True )
+```
 
 
 <h2>Load dates and View</h2>
@@ -250,7 +252,7 @@ t xt − ||xt||2
 </p>
 
 </details>
-``````
+```
 
 <!-- Research -->
 <details>
