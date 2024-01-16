@@ -210,13 +210,13 @@ def load_data(fie):
   return torch.tensor(x, dtype=torch.float32),\
           torch.tensor(y, dtype=torch.floar32)
 </code>
-<code>
+
 import matplotlib.pyplot as plt
 def plot(x,y, net):
     plt.scatter(x[:, 0], x[: , 1], c=y)
     w = net.fc1.weight.data
-    b = net.fc1.bias.data
-</code>
+    b = net.fc1.bias.data</code>
+
     x1 = np.linspace(min(x[:, 0]), max(x[:, 0]), 100)
     # w_0*x + w_1*y +b = 0
     x2 = -(w[0, 0]*x1 +b[0]/w[0, 1])
