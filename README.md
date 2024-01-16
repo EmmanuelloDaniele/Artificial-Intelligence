@@ -240,8 +240,8 @@ t+1x = (Wt + xt)T xt
 t xt + xT
 t xt
 = WT
-t xt + ||xt||2
-NEGATIVE </br>
+t xt + ||xt||2</br>
+NEGATIVE 
 WT x > 0
 WT
 t+1x = (Wt − xt)T xt
