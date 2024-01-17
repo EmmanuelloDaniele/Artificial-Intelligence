@@ -407,7 +407,7 @@ def plot2 (X ,y , model , title = " " ) :
 
 
 </summary>
-<h2>Graog Search</h2>
+<h2>Graph Search</h2>
 <p>
 Many problems can be modeled as graph search problems.</br>
 ▶ Initial state: the state from which the search begins.</br>
@@ -450,7 +450,39 @@ class Agent():
     return self.bfs()  
 
 ```
+<p>
+If the frontier is empty, return None.</br>
+Take the first path from the frontier.</br>
+If the last state of the path is a goal state, return the path.</br>
+Otherwise, generate all obtainable paths by adding a new state to the end of the path (avoiding cycles).</br>
+Add the new paths to the frontier.</br>
+Repeat from step 1.</br>
 
+It's not always possible to model a graph explicitly.</br>
+▶ The number of states can be infinite.</br>
+▶ The graph may be too large to be stored.</br>
+▶ The graph may be dynamic.</br>
+▶ Adjacency may be determined by a function.</br>
+The next_states function may need to make less trivial evaluations.</br>
+▶ We therefore make use of state transformation operators.</br>
+▶ Given a state and an action, a state transformation operator returns a new state.</br>
+</p>
+
+  <details>
+  <summary>
+      Cannibals and Missionaries.
+  </summary>
+  Three missionaries and three cannibals need to cross a river.</br>
+    ▶ Missionaries and cannibals are initially on the left bank of the river and
+    must reach the right bank.</br>
+    ▶ To do this, they have a boat that can carry a maximum of two
+    people.</br>
+    ▶ The boat cannot cross the river without anyone on board.</br>
+    ▶ The number of cannibals must never exceed the number of missionaries
+    on either bank.</br>
+    The goal is to find a minimal sequence of actions that allows
+    everyone to cross the river.</br>
+  </details>
 </details>
 
 <!-- Research -->
