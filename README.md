@@ -535,6 +535,39 @@ Not all of this information is necessary and/or available for every problem.
 However, not all actions are always possible or result in a valid state.
   </p>
 
+  <p>
+  We need a function that allows us to check if a state is valid according to the rules of the problem to remove invalid states from the frontier.</br> A state is valid if, on each bank, the number of missionaries is greater than or equal to the number of cannibals, or if there are no missionaries on that bank.
+  </p>
+
+<h2>Check Valid State</h2>
+
+  ```python
+  def is_valid(self,state):
+    left_ok = state['L']['missionaries'] >=
+      state['L']['cannibals'] or state ['L']['missionaries'] == 0
+    right_ok = state['R']['missionaries'] >=
+      state['R']['cannibals'] or state ['R']['missionaries'] == 0
+    return left_ok and right_ok
+  
+  ```
+<h2>Apply Move</h2>
+
+  ```python
+  def apply_move ( self , state , move ) :
+      boat = state [’boat ’]
+      new_state = copy . deepcopy ( state )
+      new_state [ boat ][ ’ missionaries ’] -= move [’ missionaries ’]
+      new_state [ boat ][ ’cannibals ’] -= move [’cannibals ’]
+
+      new_state [’boat ’] = ’L’ if boat == ’R’ else ’R’
+      new_state [ new_state [’boat ’]][ ’ missionaries ’] +=
+        move [’ missionaries ’]
+      new_state [ new_state [’boat ’]][ ’cannibals ’] += move [’cannibals ’]
+      
+        return new_state
+  ```
+
+
   </details>
 </details>
 
