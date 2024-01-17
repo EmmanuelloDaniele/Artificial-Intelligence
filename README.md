@@ -419,7 +419,7 @@ Many problems can be modeled as graph search problems.
 Not all of this information is necessary and/or available for every problem.
 
 </p>
-<h2>Explane</h2>
+<h2>Example</h2>
 <p>▶ The graph is represented by a dictionary of lists (adjacency lists).
 ▶ The keys of the outer dictionary are the nodes of the graph.
 ▶ The graph is non-directed, so each edge is represented twice."</p>
