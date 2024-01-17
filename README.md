@@ -419,54 +419,56 @@ Many problems can be modeled as graph search problems.</br>
 Not all of this information is necessary and/or available for every problem.
 
 </p>
-<h2>Example</h2>
-<p>▶ The graph is represented by a dictionary of lists (adjacency lists).</br>
-▶ The keys of the outer dictionary are the nodes of the graph.</br>
-▶ The graph is non-directed, so each edge is represented twice."</p>
-<p>In this first example, the problem is to find a path from node A to node D (if it exists) by traversing the fewest number of edges.</br>
-▶ Initial state: A</br>
-▶ Goal state: D</br>
-▶ Current state: The node where the algorithm is at each step</br>
-▶ Operator: Move to an adjacent node</br>
-▶ Path cost: Number of edges traversed</br>
-To minimize the number of edges traversed, we can use a breadth-first search</p>
-<h4>Implement an agent that performs a breadth-first search.
-</h4>
+  <details>
+      <summary>Example</summary>
+      <p>▶ The graph is represented by a dictionary of lists (adjacency lists).</br>
+      ▶ The keys of the outer dictionary are the nodes of the graph.</br>
+      ▶ The graph is non-directed, so each edge is represented twice."</p>
+      <p>In this first example, the problem is to find a path from node A to node D (if it exists) by traversing the fewest number of edges.</br>
+      ▶ Initial state: A</br>
+      ▶ Goal state: D</br>
+      ▶ Current state: The node where the algorithm is at each step</br>
+      ▶ Operator: Move to an adjacent node</br>
+      ▶ Path cost: Number of edges traversed</br>
+      To minimize the number of edges traversed, we can use a breadth-first search</p>
+      <h4>Implement an agent that performs a breadth-first search.
+      </h4>
 
-```python
-class Agent():
-  def __init__(self, graph, start, goal):
-    self.graph = graph
-    self.goal = goal
-    self.frontier = [[start]]
+      ```python
+      class Agent():
+        def __init__(self, graph, start, goal):
+          self.graph = graph
+          self.goal = goal
+          self.frontier = [[start]]
 
-  def next_states(self, path):
-      pass
-  
-  def is_goal(self, state):
-      pass
+        def next_states(self, path):
+            pass
+        
+        def is_goal(self, state):
+            pass
 
-  def bfs(self):
-    return self.bfs()  
+        def bfs(self):
+          return self.bfs()  
 
-```
-<p>
-If the frontier is empty, return None.</br>
-Take the first path from the frontier.</br>
-If the last state of the path is a goal state, return the path.</br>
-Otherwise, generate all obtainable paths by adding a new state to the end of the path (avoiding cycles).</br>
-Add the new paths to the frontier.</br>
-Repeat from step 1.</br>
+      ```
+      <p>
+      If the frontier is empty, return None.</br>
+      Take the first path from the frontier.</br>
+      If the last state of the path is a goal state, return the path.</br>
+      Otherwise, generate all obtainable paths by adding a new state to the end of the path (avoiding cycles).</br>
+      Add the new paths to the frontier.</br>
+      Repeat from step 1.</br>
 
-It's not always possible to model a graph explicitly.</br>
-▶ The number of states can be infinite.</br>
-▶ The graph may be too large to be stored.</br>
-▶ The graph may be dynamic.</br>
-▶ Adjacency may be determined by a function.</br>
-The next_states function may need to make less trivial evaluations.</br>
-▶ We therefore make use of state transformation operators.</br>
-▶ Given a state and an action, a state transformation operator returns a new state.</br>
-</p>
+      It's not always possible to model a graph explicitly.</br>
+      ▶ The number of states can be infinite.</br>
+      ▶ The graph may be too large to be stored.</br>
+      ▶ The graph may be dynamic.</br>
+      ▶ Adjacency may be determined by a function.</br>
+      The next_states function may need to make less trivial evaluations.</br>
+      ▶ We therefore make use of state transformation operators.</br>
+      ▶ Given a state and an action, a state transformation operator returns a new state.</br>
+      </p>
+  </details>
 
   <details>
   <summary>
