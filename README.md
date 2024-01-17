@@ -431,9 +431,10 @@ Not all of this information is necessary and/or available for every problem.
       ▶ Operator: Move to an adjacent node</br>
       ▶ Path cost: Number of edges traversed</br>
       To minimize the number of edges traversed, we can use a breadth-first search</p>
-      <h4>Implement an agent that performs a breadth-first search.
-      </h4>
+  <h4>Implement an agent that performs a breadth-first search.
+  </h4>
 
+      
       ```python
       class Agent():
         def __init__(self, graph, start, goal):
@@ -566,7 +567,44 @@ However, not all actions are always possible or result in a valid state.
 
         return new_state
   ```
+<h2>Generate Next States</h2>
 
+  ```python
+  def next_states ( self , state ) :
+      boat = state [’boat ’]
+      next_states = []
+      for move in self . moves :
+          enough_miss = state [ boat ][ ’ missionaries ’] >= move [’ missionaries ’]
+          enough_cann = state [ boat ][ ’cannibals ’] >= move [’cannibals ’]
+          if enough_miss and enough_cann :
+              new_state = self . apply_move ( state , move )
+              if self . is_valid ( new_state ):
+              next_states . append ( new_state )
+      return next_states
+
+  ```
+
+  <h2>Generate Next States</h2>
+
+  ```python
+  def states_to_moves ( self , path ) :
+      moves = []
+      for i in range (len ( path ) - 1) :
+          for move in self . moves :
+              if self . apply_move ( path [ i ] , move ) == path [ i + 1]:
+                  moves . append ( move )
+                  break
+      for i in range (len ( moves ) ) :
+          moves [ i ] = str( moves [ i ][ ’ missionaries ’]) + ’ missionaries and
+          ’ + str( moves [ i ][ ’cannibals ’]) + ’ cannibals from ’ +
+          path [ i ][ ’boat ’] + ’ to ’ + path [ i + 1][ ’boat ’]
+      return moves
+def solve ( self ) :
+    path = self . bfs ()
+    return self . states_to_moves ( path ) if path else None
+
+
+  ```
 
   </details>
 </details>
