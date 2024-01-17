@@ -409,26 +409,26 @@ def plot2 (X ,y , model , title = " " ) :
 </summary>
 <h2>Graog Search</h2>
 <p>
-Many problems can be modeled as graph search problems.
-▶ Initial state: the state from which the search begins.
-▶ Goal state: the state one wants to reach
-▶ Current state: the state in which the algorithm currently resides.
-▶ Operator: an action that modifies the current state.
-▶ Path: a sequence of states that leads from the initial state to the current one.
-▶ Path cost: the total cost to reach the current state.
+Many problems can be modeled as graph search problems.</br>
+▶ Initial state: the state from which the search begins.</br>
+▶ Goal state: the state one wants to reach.</br>
+▶ Current state: the state in which the algorithm currently resides.</br>
+▶ Operator: an action that modifies the current state.</br>
+▶ Path: a sequence of states that leads from the initial state to the current one.</br>
+▶ Path cost: the total cost to reach the current state.</br>
 Not all of this information is necessary and/or available for every problem.
 
 </p>
 <h2>Example</h2>
-<p>▶ The graph is represented by a dictionary of lists (adjacency lists).
-▶ The keys of the outer dictionary are the nodes of the graph.
+<p>▶ The graph is represented by a dictionary of lists (adjacency lists).</br>
+▶ The keys of the outer dictionary are the nodes of the graph.</br>
 ▶ The graph is non-directed, so each edge is represented twice."</p>
-<p>In this first example, the problem is to find a path from node A to node D (if it exists) by traversing the fewest number of edges.
-▶ Initial state: A
-▶ Goal state: D
-▶ Current state: The node where the algorithm is at each step
-▶ Operator: Move to an adjacent node
-▶ Path cost: Number of edges traversed
+<p>In this first example, the problem is to find a path from node A to node D (if it exists) by traversing the fewest number of edges.</br>
+▶ Initial state: A</br>
+▶ Goal state: D</br>
+▶ Current state: The node where the algorithm is at each step</br>
+▶ Operator: Move to an adjacent node</br>
+▶ Path cost: Number of edges traversed</br>
 To minimize the number of edges traversed, we can use a breadth-first search</p>
 <h4>Implement an agent that performs a breadth-first search.
 </h4>
