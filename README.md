@@ -449,8 +449,8 @@ Not all of this information is necessary and/or available for every problem.
 
         def bfs(self):
           return self.bfs()  
-
       ```
+ 
   <p>
         If the frontier is empty, return None.</br>
         Take the first path from the frontier.</br>
@@ -459,7 +459,7 @@ Not all of this information is necessary and/or available for every problem.
         Add the new paths to the frontier.</br>
         Repeat from step 1.</br>
 
-        It's not always possible to model a graph explicitly.</br>
+  It's not always possible to model a graph explicitly.</br>
         ▶ The number of states can be infinite.</br>
         ▶ The graph may be too large to be stored.</br>
         ▶ The graph may be dynamic.</br>
@@ -563,7 +563,7 @@ However, not all actions are always possible or result in a valid state.
       new_state [ new_state [’boat ’]][ ’ missionaries ’] +=
         move [’ missionaries ’]
       new_state [ new_state [’boat ’]][ ’cannibals ’] += move [’cannibals ’]
-      
+
         return new_state
   ```
 
