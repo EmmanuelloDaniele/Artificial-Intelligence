@@ -451,30 +451,30 @@ Not all of this information is necessary and/or available for every problem.
           return self.bfs()  
 
       ```
-      <p>
-      If the frontier is empty, return None.</br>
-      Take the first path from the frontier.</br>
-      If the last state of the path is a goal state, return the path.</br>
-      Otherwise, generate all obtainable paths by adding a new state to the end of the path (avoiding cycles).</br>
-      Add the new paths to the frontier.</br>
-      Repeat from step 1.</br>
+  <p>
+        If the frontier is empty, return None.</br>
+        Take the first path from the frontier.</br>
+        If the last state of the path is a goal state, return the path.</br>
+        Otherwise, generate all obtainable paths by adding a new state to the end of the path (avoiding cycles).</br>
+        Add the new paths to the frontier.</br>
+        Repeat from step 1.</br>
 
-      It's not always possible to model a graph explicitly.</br>
-      ▶ The number of states can be infinite.</br>
-      ▶ The graph may be too large to be stored.</br>
-      ▶ The graph may be dynamic.</br>
-      ▶ Adjacency may be determined by a function.</br>
-      The next_states function may need to make less trivial evaluations.</br>
-      ▶ We therefore make use of state transformation operators.</br>
-      ▶ Given a state and an action, a state transformation operator returns a new state.</br>
-      </p>
+        It's not always possible to model a graph explicitly.</br>
+        ▶ The number of states can be infinite.</br>
+        ▶ The graph may be too large to be stored.</br>
+        ▶ The graph may be dynamic.</br>
+        ▶ Adjacency may be determined by a function.</br>
+        The next_states function may need to make less trivial evaluations.</br>
+        ▶ We therefore make use of state transformation operators.</br>
+        ▶ Given a state and an action, a state transformation operator returns a new state.</br>
+  </p>
   </details>
 
   <details>
   <summary>
       Cannibals and Missionaries.
   </summary>
-  Three missionaries and three cannibals need to cross a river.</br>
+  <p>Three missionaries and three cannibals need to cross a river.</br>
     ▶ Missionaries and cannibals are initially on the left bank of the river and
     must reach the right bank.</br>
     ▶ To do this, they have a boat that can carry a maximum of two
@@ -484,6 +484,57 @@ Not all of this information is necessary and/or available for every problem.
     on either bank.</br>
     The goal is to find a minimal sequence of actions that allows
     everyone to cross the river.</br>
+  </p>
+  <h2>Let's look at the skeleton of an agent that solves the problem.
+  </h2>
+
+  ```python
+  class Agent():
+    def __init__(self):
+      pass
+
+    def is_valid(self,state):
+      pass # Check state 
+
+    def apply_move(self, state, move):
+      pass # Apply a move to a state
+
+    def next_states(self, state):
+      pass # Generate all states rechable from a state
+
+    def is_goal(self, state):
+      pass # Check if a state is the goal state 
+
+    def bfs(self):
+      pass # Implement BFS  
+  ```
+
+  <p>
+  We represent the state as a dictionary
+  </p>
+
+  ```python
+  start = {'L': {'missionaries': 3, 'cannibals':3},
+           'R': {'missionaries': 0, 'cannibals':0},
+           'boat': 'L'}
+
+  goal = {'L': {'missionaries': 0, 'cannibals':0},
+          'R': {'missionaries': 3, 'cannibals':3},
+          'boat': 'R'}
+  ```
+
+  <p>
+  Explicitly representing all possible states and their transitions would be too costly. Therefore, we define a list of possible actions that, when applied to a state, generate a new state. Given the position of the boat, the possible actions are:</br>
+
+▶ {’missionaries’: 1, ’cannibals’: 0}: move one missionary</br>
+▶ {’missionaries’: 0, ’cannibals’: 1}: move one cannibal</br>
+▶ {’missionaries’: 1, ’cannibals’: 1}: move one missionary and one cannibal</br>
+▶ {’missionaries’: 2, ’cannibals’: 0}: move two missionaries</br>
+▶ {’missionaries’: 0, ’cannibals’: 2}: move two cannibals</br>
+
+However, not all actions are always possible or result in a valid state.
+  </p>
+
   </details>
 </details>
 
