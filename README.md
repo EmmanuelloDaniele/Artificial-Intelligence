@@ -609,12 +609,88 @@ def solve ( self ) :
   </details>
 </details>
 
-<!-- Research -->
+<!-- Search2 -->
 <details>
 
 <summary>
 
-# :notebook_with_decorative_cover: Research-1
+# :notebook_with_decorative_cover: Depth First Search
+
+</summary>
+<h2>Colors Problem</h2>
+<p>The theorem states that, given a flat surface divided into connected regions, such as a political map, four colors are sufficient to color each region in such a way that adjacent regions do not have the same color. This theorem was one of the first to be proven using a computer.</p>
+
+<p>"We store with a dictionary of adjacency lists the graph representing the regions and their adjacencies.</br> Additionally, we store the available colors in a list."</p>
+
+                      ```python
+                      adjacency = {
+                        'A' : ['B' , 'G', 'F'],
+                        'B' : ['A', 'C'],
+                        'C' : ['B', 'D', 'F','E'],
+                        'D' : ['C'],
+                        'E' : ['C'],
+                        'F' : ['A','C','G'],
+                        'G' : ['A','F']
+                      }
+                      
+                      colors = ['red', 'green', 'blue', 'yellow']
+                      ```
+<h2>
+Constraint checking
+</h2>
+
+              ```python
+              class DFSAgent:
+                def __init__(self,colors, adjacency):
+                  self.colors = colors
+                  self.adjacency
+
+                def valid_coloring(self, state):
+                  for node in state:
+                    for neighbors in self.ajacency[node]:
+                      if neighbors in state and state[node] == state[neighbors]:
+                        return False
+                  return True
+              ```
+<h2>
+Possible New Assignments
+</h2>
+
+                    ```python
+                    def next_moves(self, state):
+                      for node in self.adjacency:
+                        if node not in state:
+                          for color in self.colors:
+                            yield(node,color)
+
+                    ```
+<h2>
+DFS
+</h2>
+      
+          ```python
+            def dfs(self, state={}):
+              if len(state) == len(self.adjacency):
+                yield state
+              for node, color in self.next_moves(state):
+                new_state = state.copy()
+                new_state[node] = color
+                if self.valid_coloring(new_state):
+                  yield from self.dfs(state=new_state)
+              return None
+            ```
+</details>
+
+
+
+</details>
+
+<!-- SGD -->
+<details>
+
+<summary>
+
+# :notebook_with_decorative_cover: SGD
 
 
 </summary>
